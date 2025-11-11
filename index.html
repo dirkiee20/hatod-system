@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HATOD - Welcome</title>
+    <meta name="description" content="Order food from your favorite restaurants">
+    <meta name="theme-color" content="#FF6B35">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="public/manifest.json">
+
+    <!-- Apple Touch Icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="HATOD">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pages.css">
+
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Frestaurant2067back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="welcome-body">
+    <div class="welcome-container">
+        <div class="welcome-logo">🍽️ HATOD</div>
+        <div class="welcome-tagline">Your Gateway to Delicious Dining</div>
+        <div class="welcome-loading-text">Welcome! Redirecting you to browse restaurants...</div>
+        <div class="welcome-spinner"></div>
+        <div class="welcome-redirect-info">Please wait while we prepare your dining experience</div>
+    </div>
+
+    <script>
+        // Redirect to restaurant browse page after 3 seconds
+        setTimeout(function() {
+            window.location.href = 'pages/restaurant_browse.html';
+        }, 3000);
+
+        // Optional: Add a manual redirect link after 5 seconds if auto-redirect fails
+        setTimeout(function() {
+            const container = document.querySelector('.welcome-container');
+            const manualLink = document.createElement('a');
+            manualLink.href = 'pages/restaurant_browse.html';
+            manualLink.textContent = 'Click here if not redirected automatically';
+            manualLink.className = 'welcome-manual-link';
+            container.appendChild(manualLink);
+        }, 5000);
+    </script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/public/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+<script id="dhws-dataInjector" src="/public/dhws-data-injector.js"></script>
+</body>
+</html>

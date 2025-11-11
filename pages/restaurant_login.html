@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Login - HATOD</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pages.css">
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Frestaurant2067back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background min-h-screen">
+    <!-- Header Navigation -->
+    <header class="bg-surface shadow-card border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <svg class="w-8 h-8 text-primary mr-3" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                            <path d="M12 16L13.09 22.26L22 23L13.09 23.74L12 30L10.91 23.74L2 23L10.91 22.26L12 16Z" opacity="0.6"/>
+                        </svg>
+                        <h1 class="text-xl font-bold text-text-primary">HATOD</h1>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="restaurant_browse.html" class="text-text-secondary hover:text-primary transition-smooth">For Customers</a>
+                    <a href="restaurant_login.html" class="text-primary font-medium border-b-2 border-primary pb-1">Restaurant Login</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="max-w-md mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-text-primary mb-2">Restaurant Portal</h2>
+                <p class="text-text-secondary">Sign in to manage your restaurant</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="bg-surface rounded-lg p-6 shadow-card border border-border">
+                <form id="loginForm" class="space-y-6">
+                    <!-- Email Address -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-text-primary mb-1">Restaurant Email</label>
+                        <input type="email" 
+                               id="email" 
+                               name="email" 
+                               required 
+                               class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                               placeholder="restaurant@example.com">
+                        <div id="emailError" class="text-error text-xs mt-1 hidden">Please enter a valid email address</div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label for="password" class="block text-sm font-medium text-text-primary">Password</label>
+                            <a href="javascript:void(0)" class="text-sm text-primary hover:text-primary-600 transition-smooth">Forgot password?</a>
+                        </div>
+                        <div class="relative">
+                            <input type="password" 
+                                   id="password" 
+                                   name="password" 
+                                   required 
+                                   class="w-full px-3 py-2 pr-10 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter your password">
+                            <button type="button" 
+                                    id="togglePassword" 
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center text-text-secondary hover:text-text-primary transition-smooth">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="passwordError" class="text-error text-xs mt-1 hidden">Incorrect password</div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="flex items-center">
+                        <input type="checkbox" 
+                               id="remember" 
+                               name="remember" 
+                               class="h-4 w-4 text-primary focus:ring-primary border-border rounded">
+                        <label for="remember" class="ml-2 text-sm text-text-secondary">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" 
+                            id="submitBtn" 
+                            class="w-full bg-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-smooth btn-hover disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span id="submitText">Sign In</span>
+                        <svg id="loadingSpinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden inline" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="text-center mt-6">
+                <p class="text-text-secondary">
+                    Don't have a restaurant account? 
+                    <a href="javascript:void(0)" class="text-primary hover:text-primary-600 font-medium transition-smooth">Contact us to register</a>
+                </p>
+            </div>
+
+            <!-- Customer Login Link -->
+            <div class="text-center mt-4">
+                <a href="customer_login.html" class="text-text-secondary hover:text-primary transition-smooth text-sm">
+                    Are you a customer? Sign in here
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-border mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center">
+                <p class="text-text-secondary text-sm">© 2025 HATOD. All Rights Reserved.</p>
+                <div class="flex items-center space-x-4 mt-4 sm:mt-0">
+                    <a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth text-sm">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth text-sm">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-smooth text-sm">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Password visibility toggle
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                const icon = togglePassword.querySelector('svg');
+                if (type === 'text') {
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>';
+                } else {
+                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>';
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const emailError = document.getElementById('emailError');
+                const passwordError = document.getElementById('passwordError');
+                
+                let isValid = true;
+
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    emailError.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    emailError.classList.add('hidden');
+                }
+
+                // Validate password
+                if (!password || password.length < 6) {
+                    passwordError.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    passwordError.classList.add('hidden');
+                }
+
+                if (isValid) {
+                    // Show loading state
+                    const submitText = document.getElementById('submitText');
+                    const loadingSpinner = document.getElementById('loadingSpinner');
+                    
+                    submitBtn.disabled = true;
+                    submitText.textContent = 'Signing in...';
+                    loadingSpinner.classList.remove('hidden');
+
+                    // Simulate API call - check user role
+                    setTimeout(() => {
+                        if (email.includes('admin')) {
+                            window.location.href = 'admin_dashboard.html';
+                        } else {
+                            window.location.href = 'restaurant_dashboard.html';
+                        }
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

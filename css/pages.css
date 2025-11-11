@@ -1,0 +1,219 @@
+/* Page-specific styles for HATOD */
+
+/* Welcome/Landing Page Styles */
+.welcome-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+.welcome-body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-logo {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-tagline {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.welcome-loading-text {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.welcome-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 2rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.welcome-redirect-info {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 1rem;
+}
+
+.welcome-manual-link {
+    display: block;
+    margin-top: 1rem;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.welcome-manual-link:hover {
+    text-decoration: underline;
+}
+
+/* Order Tracking Progress Bar */
+.order-progress-bar {
+    width: 50%;
+    transition: width 1s ease-in-out;
+}
+
+.order-progress-bar.completed {
+    width: 100%;
+}
+
+/* Checkout Page - Payment Method Selection */
+.payment-method-radio:checked + .payment-method-label {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-50);
+}
+
+/* Customer Profile - Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e8f0;
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--color-primary);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+.loading-spinner.hidden {
+    display: none;
+}
+
+/* Form Error States */
+.form-input.error {
+    border-color: var(--color-error);
+}
+
+.form-input.success {
+    border-color: var(--color-success);
+}
+
+/* Add to Cart Button Feedback */
+.add-to-cart-btn.added {
+    background-color: var(--color-success);
+}
+
+.add-to-cart-btn.added:hover {
+    background-color: var(--color-success-600);
+}
+
+/* Form validation states */
+.form-field-error {
+    border-color: var(--color-error);
+}
+
+.form-field-success {
+    border-color: var(--color-success);
+}
+
+/* Restaurant Menu - Mobile Improvements */
+.menu-item-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item-card:active {
+    transform: scale(0.98);
+}
+
+.menu-category-nav {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.menu-category-nav::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .welcome-container {
+        padding: 2rem;
+    }
+
+    .welcome-logo {
+        font-size: 2rem;
+    }
+
+    .welcome-tagline {
+        font-size: 1rem;
+    }
+
+    /* Menu item improvements for mobile */
+    .menu-item-image {
+        height: 200px;
+    }
+}
+
