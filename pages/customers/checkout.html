@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - HATOD</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/pages.css">
   
   <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Frestaurant2067back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
   <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
@@ -17,7 +17,7 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <a href="restaurant_browse.html" class="flex items-center">
+                    <a href="../restaurants/restaurant_browse.html" class="flex items-center">
                         <svg class="w-8 h-8 text-primary mr-3" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
                             <path d="M12 16L13.09 22.26L22 23L13.09 23.74L12 30L10.91 23.74L2 23L10.91 22.26L12 16Z" opacity="0.6"/>
@@ -40,7 +40,7 @@
         <!-- Breadcrumb -->
         <div class="mb-6">
             <div class="flex items-center space-x-2 text-sm text-text-secondary">
-                <a href="restaurant_browse.html" class="hover:text-primary transition-smooth">Browse</a>
+                <a href="../restaurants/restaurant_browse.html" class="hover:text-primary transition-smooth">Browse</a>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -92,65 +92,76 @@
                 <!-- Payment Method -->
                 <section class="bg-surface rounded-lg p-6 shadow-card border border-border">
                     <h3 class="text-lg font-semibold text-text-primary mb-4">Payment Method</h3>
-                    <div class="space-y-3">
-                        <label class="flex items-center p-4 border-2 border-primary rounded-lg cursor-pointer">
-                            <input type="radio" name="payment" value="card" checked class="h-4 w-4 text-primary focus:ring-primary border-border">
-                            <div class="ml-3 flex-1">
-                                <div class="font-medium text-text-primary">Credit/Debit Card</div>
-                                <div class="text-sm text-text-secondary">Visa, Mastercard, American Express</div>
+                    <div class="space-y-4">
+                        <!-- GCash Payment -->
+                        <div class="border border-border rounded-lg hover:shadow-md transition-smooth">
+                            <label class="flex items-center cursor-pointer p-4">
+                                <input type="radio" name="payment_method" value="gcash" checked class="h-5 w-5 text-primary focus:ring-primary border-border">
+                                <div class="ml-4 flex-1">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-lg font-semibold text-text-primary">GCash</h3>
+                                            <p class="text-text-secondary">Pay securely with your GCash wallet</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <!-- GCash Details -->
+                            <div id="gcashDetails" class="mx-4 mb-4 px-4 py-3 bg-blue-50 rounded-lg">
+                                <p class="text-sm text-blue-800">
+                                    <strong>How to pay:</strong><br>
+                                    1. Open your GCash app<br>
+                                    2. Scan the QR code or enter the reference number<br>
+                                    3. Confirm payment of ₱60.03
+                                </p>
+                                <div class="mt-3">
+                                    <label class="block text-sm font-medium text-blue-800 mb-2">GCash Number</label>
+                                    <input type="tel"
+                                           placeholder="09XX XXX XXXX"
+                                           maxlength="11"
+                                           class="w-full border border-blue-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
                             </div>
-                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                            </svg>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border border-border rounded-lg cursor-pointer hover:bg-gray-50 transition-smooth">
-                            <input type="radio" name="payment" value="paypal" class="h-4 w-4 text-primary focus:ring-primary border-border">
-                            <div class="ml-3 flex-1">
-                                <div class="font-medium text-text-primary">PayPal</div>
-                                <div class="text-sm text-text-secondary">Pay securely with PayPal</div>
-                            </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border border-border rounded-lg cursor-pointer hover:bg-gray-50 transition-smooth">
-                            <input type="radio" name="payment" value="cash" class="h-4 w-4 text-primary focus:ring-primary border-border">
-                            <div class="ml-3 flex-1">
-                                <div class="font-medium text-text-primary">Cash on Delivery</div>
-                                <div class="text-sm text-text-secondary">Pay when you receive your order</div>
-                            </div>
-                        </label>
-                    </div>
+                        </div>
 
-                    <!-- Card Details Form -->
-                    <div id="cardDetails" class="mt-6 space-y-4 hidden">
-                        <div>
-                            <label class="block text-sm font-medium text-text-primary mb-2">Card Number</label>
-                            <input type="text" 
-                                   placeholder="1234 5678 9012 3456" 
-                                   maxlength="19"
-                                   class="w-full border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-text-primary mb-2">Expiry Date</label>
-                                <input type="text" 
-                                       placeholder="MM/YY" 
-                                       maxlength="5"
-                                       class="w-full border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <!-- Cash Payment -->
+                        <div class="border border-border rounded-lg hover:shadow-md transition-smooth">
+                            <label class="flex items-center cursor-pointer p-4">
+                                <input type="radio" name="payment_method" value="cash" class="h-5 w-5 text-primary focus:ring-primary border-border">
+                                <div class="ml-4 flex-1">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-lg font-semibold text-text-primary">Cash on Delivery</h3>
+                                            <p class="text-text-secondary">Pay in cash when your order arrives</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <!-- Cash Details -->
+                            <div id="cashDetails" class="mx-4 mb-4 px-4 py-3 bg-green-50 rounded-lg hidden">
+                                <p class="text-sm text-green-800">
+                                    <strong>Cash Payment:</strong><br>
+                                    • Pay the exact amount: ₱60.03<br>
+                                    • Prepare exact change if possible<br>
+                                    • Payment collected by delivery rider
+                                </p>
+                                <div class="mt-3">
+                                    <label class="block text-sm font-medium text-green-800 mb-2">Special Instructions (Optional)</label>
+                                    <textarea rows="2"
+                                              placeholder="Please bring extra change, etc."
+                                              class="w-full border border-green-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                                </div>
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-text-primary mb-2">CVV</label>
-                                <input type="text" 
-                                       placeholder="123" 
-                                       maxlength="3"
-                                       class="w-full border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-text-primary mb-2">Cardholder Name</label>
-                            <input type="text" 
-                                   placeholder="John Doe" 
-                                   class="w-full border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                         </div>
                     </div>
                 </section>
@@ -262,30 +273,27 @@
     </footer>
 
     <script>
-        // Show/hide card details based on payment method
-        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+        // Show/hide payment details based on selection
+        document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
             radio.addEventListener('change', function() {
-                const cardDetails = document.getElementById('cardDetails');
-                if (this.value === 'card') {
-                    cardDetails.classList.remove('hidden');
-                } else {
-                    cardDetails.classList.add('hidden');
+                // Hide all details first
+                document.getElementById('gcashDetails').classList.add('hidden');
+                document.getElementById('cashDetails').classList.add('hidden');
+
+                // Show selected payment details
+                if (this.value === 'gcash') {
+                    document.getElementById('gcashDetails').classList.remove('hidden');
+                } else if (this.value === 'cash') {
+                    document.getElementById('cashDetails').classList.remove('hidden');
                 }
             });
         });
 
-        // Card number formatting
-        document.querySelector('input[placeholder="1234 5678 9012 3456"]')?.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\s/g, '');
-            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-            e.target.value = formattedValue;
-        });
-
-        // Expiry date formatting
-        document.querySelector('input[placeholder="MM/YY"]')?.addEventListener('input', function(e) {
+        // GCash number formatting
+        document.querySelector('input[placeholder="09XX XXX XXXX"]')?.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length >= 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                value = value.substring(0, 4) + ' ' + value.substring(4, 7) + ' ' + value.substring(7, 11);
             }
             e.target.value = value;
         });
@@ -295,6 +303,6 @@
             window.location.href = 'payment_confirmation.html';
         }
     </script>
-<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+<script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
 </body>
 </html>

@@ -36,14 +36,14 @@
     <script>
         // Redirect to restaurant browse page after 3 seconds
         setTimeout(function() {
-            window.location.href = 'pages/restaurant_browse.html';
+            window.location.href = 'pages/restaurants/restaurant_browse.html';
         }, 3000);
 
         // Optional: Add a manual redirect link after 5 seconds if auto-redirect fails
         setTimeout(function() {
             const container = document.querySelector('.welcome-container');
             const manualLink = document.createElement('a');
-            manualLink.href = 'pages/restaurant_browse.html';
+            manualLink.href = 'pages/restaurants/restaurant_browse.html';
             manualLink.textContent = 'Click here if not redirected automatically';
             manualLink.className = 'welcome-manual-link';
             container.appendChild(manualLink);

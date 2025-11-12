@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Tracking - HATOD</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/pages.css">
   
   <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Frestaurant2067back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
   <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
@@ -26,27 +26,22 @@
 
                 <!-- Navigation -->
                 <nav class="hidden md:flex space-x-8">
-                    <a href="restaurant_browse.html" class="text-text-secondary hover:text-primary transition-smooth">Browse</a>
+                    <a href="../restaurants/restaurant_browse.html" class="text-text-secondary hover:text-primary transition-smooth">Browse</a>
                     <a href="shopping_cart.html" class="text-text-secondary hover:text-primary transition-smooth">Cart</a>
                     <a href="order_tracking.html" class="text-primary font-medium border-b-2 border-primary pb-1">Orders</a>
                     <a href="customer_profile.html" class="text-text-secondary hover:text-primary transition-smooth">Account</a>
                 </nav>
 
-                <!-- User Profile -->
+                <!-- Back Button -->
                 <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-smooth">
-                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1dd39b079-1762274356948.png" 
-                                 alt="Customer profile picture" 
-                                 class="w-8 h-8 rounded-full object-cover"
-                                 onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
-                            <span class="text-sm font-medium">Sarah</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </button>
-                    </div>
+                    <button onclick="history.back()" class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-smooth">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        <span class="text-sm font-medium">Back</span>
+                    </button>
                 </div>
+
             </div>
         </div>
     </header>
@@ -455,6 +450,6 @@
             </div>
         </div>
     </footer>
-<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+<script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
 </body>
 </html>
