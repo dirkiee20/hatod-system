@@ -121,11 +121,11 @@
         <!-- Mobile Category Navigation -->
         <div class="lg:hidden mb-6">
             <div class="flex space-x-2 overflow-x-auto pb-2 -mx-4 px-4 menu-category-nav">
-                <a href="#pizzas" class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium whitespace-nowrap flex-shrink-0">Pizzas</a>
-                <a href="#appetizers" class="px-4 py-2 bg-gray-100 text-text-secondary rounded-lg text-sm font-medium hover:bg-gray-200 transition-smooth whitespace-nowrap flex-shrink-0">Appetizers</a>
-                <a href="#salads" class="px-4 py-2 bg-gray-100 text-text-secondary rounded-lg text-sm font-medium hover:bg-gray-200 transition-smooth whitespace-nowrap flex-shrink-0">Salads</a>
-                <a href="#desserts" class="px-4 py-2 bg-gray-100 text-text-secondary rounded-lg text-sm font-medium hover:bg-gray-200 transition-smooth whitespace-nowrap flex-shrink-0">Desserts</a>
-                <a href="#drinks" class="px-4 py-2 bg-gray-100 text-text-secondary rounded-lg text-sm font-medium hover:bg-gray-200 transition-smooth whitespace-nowrap flex-shrink-0">Drinks</a>
+                <button onclick="filterCategory('pizzas')" class="category-btn px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium whitespace-nowrap flex-shrink-0 active" data-category="pizzas">Pizzas</button>
+                <button onclick="filterCategory('appetizers')" class="category-btn px-4 py-2 bg-gray-100 text-text-secondary rounded-lg text-sm font-medium hover:bg-gray-200 transition-smooth whitespace-nowrap flex-shrink-0" data-category="appetizers">Appetizers</button>
+                <button onclick="filterCategory('salads')" class="category-btn px-4 py-2 bg-gray-100 text-text-secondary rounded-lg text-sm font-medium hover:bg-gray-200 transition-smooth whitespace-nowrap flex-shrink-0" data-category="salads">Salads</button>
+                <button onclick="filterCategory('desserts')" class="category-btn px-4 py-2 bg-gray-100 text-text-secondary rounded-lg text-sm font-medium hover:bg-gray-200 transition-smooth whitespace-nowrap flex-shrink-0" data-category="desserts">Desserts</button>
+                <button onclick="filterCategory('drinks')" class="category-btn px-4 py-2 bg-gray-100 text-text-secondary rounded-lg text-sm font-medium hover:bg-gray-200 transition-smooth whitespace-nowrap flex-shrink-0" data-category="drinks">Drinks</button>
             </div>
         </div>
 
@@ -135,11 +135,11 @@
                 <div class="bg-surface rounded-lg p-4 shadow-card border border-border sticky top-24">
                     <h3 class="font-semibold text-text-primary mb-4">Categories</h3>
                     <nav class="space-y-2">
-                        <a href="#pizzas" class="block px-3 py-2 bg-primary text-white rounded-lg">Pizzas</a>
-                        <a href="#appetizers" class="block px-3 py-2 text-text-secondary hover:bg-gray-50 rounded-lg transition-smooth">Appetizers</a>
-                        <a href="#salads" class="block px-3 py-2 text-text-secondary hover:bg-gray-50 rounded-lg transition-smooth">Salads</a>
-                        <a href="#desserts" class="block px-3 py-2 text-text-secondary hover:bg-gray-50 rounded-lg transition-smooth">Desserts</a>
-                        <a href="#drinks" class="block px-3 py-2 text-text-secondary hover:bg-gray-50 rounded-lg transition-smooth">Drinks</a>
+                        <button onclick="filterCategory('pizzas')" class="category-btn w-full text-left px-3 py-2 bg-primary text-white rounded-lg active" data-category="pizzas">Pizzas</button>
+                        <button onclick="filterCategory('appetizers')" class="category-btn w-full text-left px-3 py-2 text-text-secondary hover:bg-gray-50 rounded-lg transition-smooth" data-category="appetizers">Appetizers</button>
+                        <button onclick="filterCategory('salads')" class="category-btn w-full text-left px-3 py-2 text-text-secondary hover:bg-gray-50 rounded-lg transition-smooth" data-category="salads">Salads</button>
+                        <button onclick="filterCategory('desserts')" class="category-btn w-full text-left px-3 py-2 text-text-secondary hover:bg-gray-50 rounded-lg transition-smooth" data-category="desserts">Desserts</button>
+                        <button onclick="filterCategory('drinks')" class="category-btn w-full text-left px-3 py-2 text-text-secondary hover:bg-gray-50 rounded-lg transition-smooth" data-category="drinks">Drinks</button>
                     </nav>
                 </div>
             </aside>
@@ -372,21 +372,54 @@
             const itemCard = button.closest('.bg-surface');
             const itemName = itemCard.querySelector('h3').textContent;
             const itemPrice = itemCard.querySelector('.font-bold').textContent.replace('?', '');
-            
+
             // Show feedback
             button.textContent = 'Added!';
             button.classList.add('add-to-cart-btn', 'added');
             button.disabled = true;
-            
+
             setTimeout(() => {
                 button.textContent = 'Add to Cart';
                 button.classList.remove('add-to-cart-btn', 'added');
                 button.disabled = false;
             }, 2000);
-            
+
             // In a real app, this would add to cart state/localStorage
             console.log('Added to cart:', itemName, itemPrice);
         }
+
+        function filterCategory(category) {
+            // Get all category sections
+            const sections = document.querySelectorAll('section[id]');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+
+            // Remove active class from all buttons
+            categoryButtons.forEach(btn => {
+                btn.classList.remove('active', 'bg-primary', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-text-secondary');
+            });
+
+            // Add active class to clicked button
+            const activeButton = document.querySelector(`[data-category="${category}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active', 'bg-primary', 'text-white');
+                activeButton.classList.remove('bg-gray-100', 'text-text-secondary');
+            }
+
+            // Show/hide sections based on selected category
+            sections.forEach(section => {
+                if (section.id === category) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize with pizzas category active
+        document.addEventListener('DOMContentLoaded', function() {
+            filterCategory('pizzas');
+        });
     </script>
 <script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
 </body>

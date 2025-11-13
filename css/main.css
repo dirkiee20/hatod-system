@@ -1962,6 +1962,12 @@ body {
   display: block;
 }
 
+/* Category Button Functionality */
+.category-btn.active {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+}
+
 /* Utility Classes */
 
 .after\:absolute::after{

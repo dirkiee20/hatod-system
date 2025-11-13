@@ -34,16 +34,16 @@
     </div>
 
     <script>
-        // Redirect to customer login page after 3 seconds
+        // Redirect to unified login page after 3 seconds
         setTimeout(function() {
-            window.location.href = 'pages/customers/customer_login.html';
-        }, 3000); 
+            window.location.href = 'pages/login.html';
+        }, 3000);
 
         // Optional: Add a manual redirect link after 5 seconds if auto-redirect fails
         setTimeout(function() {
             const container = document.querySelector('.welcome-container');
             const manualLink = document.createElement('a');
-            manualLink.href = 'pages/customers/customer_login.html';
+            manualLink.href = 'pages/login.html';
             manualLink.textContent = 'Click here if not redirected automatically';
             manualLink.className = 'welcome-manual-link';
             container.appendChild(manualLink);

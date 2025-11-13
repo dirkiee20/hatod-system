@@ -6,10 +6,7 @@
     <title>User Management - HATOD Admin</title>
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/pages.css">
-
-  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Frestaurant2067back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
-  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
-  </head>
+    </head>
 <body class="bg-background min-h-screen">
     <!-- Header Navigation -->
     <header class="bg-surface shadow-card border-b border-border">
@@ -55,21 +52,29 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Page Header -->
         <div class="mb-8">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                    <h2 class="text-3xl font-bold text-text-primary mb-2">User Management</h2>
-                    <p class="text-text-secondary">Manage all customers and restaurant owners</p>
-                </div>
-                <div class="mt-4 sm:mt-0">
-                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-smooth btn-hover">
-                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                        </svg>
-                        Add User
+            <h2 class="text-3xl font-bold text-text-primary mb-2">User Management</h2>
+            <p class="text-text-secondary">Manage all customers, restaurants, and delivery drivers</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="mb-8">
+            <div class="border-b border-border">
+                <nav class="-mb-px flex space-x-8">
+                    <button id="usersListTab" class="tab-button active whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm border-primary text-primary">
+                        Users List
                     </button>
-                </div>
+                    <button id="addRestaurantTab" class="tab-button whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm border-transparent text-text-secondary hover:text-text-primary hover:border-border">
+                        Add Restaurant
+                    </button>
+                    <button id="addDeliveryTab" class="tab-button whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm border-transparent text-text-secondary hover:text-text-primary hover:border-border">
+                        Add Delivery Driver
+                    </button>
+                </nav>
             </div>
         </div>
+
+        <!-- Tab Content -->
+        <div id="usersListContent" class="tab-content">
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -293,7 +298,278 @@
                 </div>
             </div>
         </div>
+
+        <!-- Add Restaurant Tab Content -->
+        <div id="addRestaurantContent" class="tab-content hidden">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-text-primary mb-2">Create Restaurant Account</h3>
+                <p class="text-text-secondary">Add a new restaurant to the platform</p>
+            </div>
+
+            <!-- Restaurant Creation Form -->
+            <div class="bg-surface rounded-lg p-6 shadow-card border border-border max-w-4xl">
+                <form id="createRestaurantForm" class="space-y-6">
+                    <!-- Basic Information -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="restaurantFirstName" class="block text-sm font-medium text-text-primary mb-1">Owner First Name *</label>
+                            <input type="text" id="restaurantFirstName" name="firstName" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter owner's first name">
+                        </div>
+                        <div>
+                            <label for="restaurantLastName" class="block text-sm font-medium text-text-primary mb-1">Owner Last Name *</label>
+                            <input type="text" id="restaurantLastName" name="lastName" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter owner's last name">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="restaurantEmail" class="block text-sm font-medium text-text-primary mb-1">Email Address *</label>
+                            <input type="email" id="restaurantEmail" name="email" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="restaurant@example.com">
+                        </div>
+                        <div>
+                            <label for="restaurantPhone" class="block text-sm font-medium text-text-primary mb-1">Phone Number</label>
+                            <input type="tel" id="restaurantPhone" name="phone"
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter phone number">
+                        </div>
+                    </div>
+
+                    <!-- Restaurant Information -->
+                    <div class="border-t border-border pt-6">
+                        <h4 class="text-lg font-medium text-text-primary mb-4">Restaurant Details</h4>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="restaurantName" class="block text-sm font-medium text-text-primary mb-1">Restaurant Name *</label>
+                                <input type="text" id="restaurantName" name="restaurantName" required
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="Enter restaurant name">
+                            </div>
+                            <div>
+                                <label for="cuisineType" class="block text-sm font-medium text-text-primary mb-1">Cuisine Type *</label>
+                                <select id="cuisineType" name="cuisineType" required
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
+                                    <option value="">Select cuisine type</option>
+                                    <option value="italian">Italian</option>
+                                    <option value="chinese">Chinese</option>
+                                    <option value="mexican">Mexican</option>
+                                    <option value="indian">Indian</option>
+                                    <option value="american">American</option>
+                                    <option value="japanese">Japanese</option>
+                                    <option value="thai">Thai</option>
+                                    <option value="mediterranean">Mediterranean</option>
+                                    <option value="korean">Korean</option>
+                                    <option value="vietnamese">Vietnamese</option>
+                                    <option value="french">French</option>
+                                    <option value="german">German</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="restaurantAddress" class="block text-sm font-medium text-text-primary mb-1">Restaurant Address *</label>
+                            <textarea id="restaurantAddress" name="restaurantAddress" rows="3" required
+                                      class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth resize-vertical"
+                                      placeholder="Enter complete restaurant address"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <label for="restaurantCity" class="block text-sm font-medium text-text-primary mb-1">City *</label>
+                                <input type="text" id="restaurantCity" name="city" required
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="City">
+                            </div>
+                            <div>
+                                <label for="restaurantState" class="block text-sm font-medium text-text-primary mb-1">State/Province</label>
+                                <input type="text" id="restaurantState" name="state"
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="State/Province">
+                            </div>
+                            <div>
+                                <label for="restaurantZip" class="block text-sm font-medium text-text-primary mb-1">ZIP/Postal Code</label>
+                                <input type="text" id="restaurantZip" name="zipCode"
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="ZIP/Postal Code">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Settings -->
+                    <div class="border-t border-border pt-6">
+                        <h4 class="text-lg font-medium text-text-primary mb-4">Account Settings</h4>
+
+                        <div>
+                            <label for="restaurantPassword" class="block text-sm font-medium text-text-primary mb-1">Temporary Password *</label>
+                            <input type="password" id="restaurantPassword" name="password" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter temporary password">
+                            <p class="text-xs text-text-secondary mt-1">Restaurant owner will be prompted to change password on first login</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-text-primary mb-2">Account Status</label>
+                            <div class="flex items-center space-x-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="restaurantStatus" value="active" checked class="text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-text-primary">Active</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="restaurantStatus" value="inactive" class="text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-text-primary">Inactive</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Form Actions -->
+                <div class="flex items-center justify-end space-x-3 mt-8 pt-6 border-t border-border">
+                    <button id="resetRestaurantBtn" type="button"
+                            class="px-4 py-2 text-text-secondary bg-gray-100 hover:bg-gray-200 rounded-lg transition-smooth">
+                        Reset
+                    </button>
+                    <button id="createRestaurantBtn" type="button"
+                            class="px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary-700 transition-smooth btn-hover">
+                        Create Restaurant Account
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Delivery Driver Tab Content -->
+        <div id="addDeliveryContent" class="tab-content hidden">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-text-primary mb-2">Create Delivery Driver Account</h3>
+                <p class="text-text-secondary">Add a new delivery driver to the platform</p>
+            </div>
+
+            <!-- Delivery Driver Creation Form -->
+            <div class="bg-surface rounded-lg p-6 shadow-card border border-border max-w-4xl">
+                <form id="createDeliveryForm" class="space-y-6">
+                    <!-- Basic Information -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="deliveryFirstName" class="block text-sm font-medium text-text-primary mb-1">First Name *</label>
+                            <input type="text" id="deliveryFirstName" name="firstName" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter first name">
+                        </div>
+                        <div>
+                            <label for="deliveryLastName" class="block text-sm font-medium text-text-primary mb-1">Last Name *</label>
+                            <input type="text" id="deliveryLastName" name="lastName" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter last name">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="deliveryEmail" class="block text-sm font-medium text-text-primary mb-1">Email Address *</label>
+                            <input type="email" id="deliveryEmail" name="email" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="driver@example.com">
+                        </div>
+                        <div>
+                            <label for="deliveryPhone" class="block text-sm font-medium text-text-primary mb-1">Phone Number *</label>
+                            <input type="tel" id="deliveryPhone" name="phone" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter phone number">
+                        </div>
+                    </div>
+
+                    <!-- Delivery Information -->
+                    <div class="border-t border-border pt-6">
+                        <h4 class="text-lg font-medium text-text-primary mb-4">Delivery Information</h4>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="vehicleType" class="block text-sm font-medium text-text-primary mb-1">Vehicle Type *</label>
+                                <select id="vehicleType" name="vehicleType" required
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
+                                    <option value="">Select vehicle type</option>
+                                    <option value="bicycle">Bicycle</option>
+                                    <option value="motorcycle">Motorcycle</option>
+                                    <option value="car">Car</option>
+                                    <option value="scooter">Electric Scooter</option>
+                                    <option value="van">Van</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="licenseNumber" class="block text-sm font-medium text-text-primary mb-1">Driver's License Number *</label>
+                                <input type="text" id="licenseNumber" name="licenseNumber" required
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="Enter license number">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="licenseExpiry" class="block text-sm font-medium text-text-primary mb-1">License Expiry Date</label>
+                                <input type="date" id="licenseExpiry" name="licenseExpiry"
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
+                            </div>
+                            <div>
+                                <label for="deliveryRadius" class="block text-sm font-medium text-text-primary mb-1">Delivery Radius (km)</label>
+                                <input type="number" id="deliveryRadius" name="deliveryRadius" min="1" max="50"
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="25">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Settings -->
+                    <div class="border-t border-border pt-6">
+                        <h4 class="text-lg font-medium text-text-primary mb-4">Account Settings</h4>
+
+                        <div>
+                            <label for="deliveryPassword" class="block text-sm font-medium text-text-primary mb-1">Temporary Password *</label>
+                            <input type="password" id="deliveryPassword" name="password" required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter temporary password">
+                            <p class="text-xs text-text-secondary mt-1">Driver will be prompted to change password on first login</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-text-primary mb-2">Account Status</label>
+                            <div class="flex items-center space-x-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="deliveryStatus" value="active" checked class="text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-text-primary">Active</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="deliveryStatus" value="inactive" class="text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-text-primary">Inactive</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Form Actions -->
+                <div class="flex items-center justify-end space-x-3 mt-8 pt-6 border-t border-border">
+                    <button id="resetDeliveryBtn" type="button"
+                            class="px-4 py-2 text-text-secondary bg-gray-100 hover:bg-gray-200 rounded-lg transition-smooth">
+                        Reset
+                    </button>
+                    <button id="createDeliveryBtn" type="button"
+                            class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent-600 transition-smooth btn-hover">
+                        Create Delivery Account
+                    </button>
+                </div>
+            </div>
+        </div>
     </main>
+
 
     <!-- Mobile Bottom Tab Navigation -->
     <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-border shadow-lg z-50">
@@ -338,6 +614,146 @@
             </div>
         </div>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab functionality
+        const usersListTab = document.getElementById('usersListTab');
+        const addRestaurantTab = document.getElementById('addRestaurantTab');
+        const addDeliveryTab = document.getElementById('addDeliveryTab');
+        const usersListContent = document.getElementById('usersListContent');
+        const addRestaurantContent = document.getElementById('addRestaurantContent');
+        const addDeliveryContent = document.getElementById('addDeliveryContent');
+        const tabButtons = document.querySelectorAll('.tab-button');
+
+        function switchTab(activeTab, activeContent) {
+            // Remove active class from all tabs
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.remove('border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-text-secondary');
+            });
+
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Activate selected tab
+            activeTab.classList.add('active');
+            activeTab.classList.remove('border-transparent', 'text-text-secondary');
+            activeTab.classList.add('border-primary', 'text-primary');
+
+            // Show selected content
+            activeContent.classList.remove('hidden');
+        }
+
+        usersListTab.addEventListener('click', function() {
+            switchTab(usersListTab, usersListContent);
+        });
+
+        addRestaurantTab.addEventListener('click', function() {
+            switchTab(addRestaurantTab, addRestaurantContent);
+        });
+
+        addDeliveryTab.addEventListener('click', function() {
+            switchTab(addDeliveryTab, addDeliveryContent);
+        });
+
+        // Restaurant form functionality
+        const createRestaurantForm = document.getElementById('createRestaurantForm');
+        const createRestaurantBtn = document.getElementById('createRestaurantBtn');
+        const resetRestaurantBtn = document.getElementById('resetRestaurantBtn');
+
+        resetRestaurantBtn.addEventListener('click', function() {
+            createRestaurantForm.reset();
+        });
+
+        createRestaurantBtn.addEventListener('click', function() {
+            if (createRestaurantForm.checkValidity()) {
+                // Get form data
+                const formData = new FormData(createRestaurantForm);
+                const restaurantData = {
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    password: formData.get('password'),
+                    status: formData.get('restaurantStatus'),
+                    userType: 'restaurant',
+                    restaurantName: formData.get('restaurantName'),
+                    restaurantAddress: formData.get('restaurantAddress'),
+                    city: formData.get('city'),
+                    state: formData.get('state'),
+                    zipCode: formData.get('zipCode'),
+                    cuisineType: formData.get('cuisineType')
+                };
+
+                // Here you would typically send the data to your backend
+                console.log('Creating restaurant account:', restaurantData);
+
+                // Show success message
+                alert('Restaurant account created successfully!');
+
+                // Reset form
+                createRestaurantForm.reset();
+
+                // Switch back to users list
+                switchTab(usersListTab, usersListContent);
+
+                // Refresh the page to show the new user
+                location.reload();
+            } else {
+                createRestaurantForm.reportValidity();
+            }
+        });
+
+        // Delivery form functionality
+        const createDeliveryForm = document.getElementById('createDeliveryForm');
+        const createDeliveryBtn = document.getElementById('createDeliveryBtn');
+        const resetDeliveryBtn = document.getElementById('resetDeliveryBtn');
+
+        resetDeliveryBtn.addEventListener('click', function() {
+            createDeliveryForm.reset();
+        });
+
+        createDeliveryBtn.addEventListener('click', function() {
+            if (createDeliveryForm.checkValidity()) {
+                // Get form data
+                const formData = new FormData(createDeliveryForm);
+                const deliveryData = {
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    password: formData.get('password'),
+                    status: formData.get('deliveryStatus'),
+                    userType: 'delivery',
+                    vehicleType: formData.get('vehicleType'),
+                    licenseNumber: formData.get('licenseNumber'),
+                    licenseExpiry: formData.get('licenseExpiry'),
+                    deliveryRadius: formData.get('deliveryRadius')
+                };
+
+                // Here you would typically send the data to your backend
+                console.log('Creating delivery driver account:', deliveryData);
+
+                // Show success message
+                alert('Delivery driver account created successfully!');
+
+                // Reset form
+                createDeliveryForm.reset();
+
+                // Switch back to users list
+                switchTab(usersListTab, usersListContent);
+
+                // Refresh the page to show the new user
+                location.reload();
+            } else {
+                createDeliveryForm.reportValidity();
+            }
+        });
+    });
+</script>
 <script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
 </body>
 </html>
