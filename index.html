@@ -16,7 +16,7 @@
     <meta name="apple-mobile-web-app-title" content="HATOD">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+    <link rel="icon" type="image/png" sizes="192x192" href="public/logos/logo_192x192.png">
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/pages.css">
@@ -26,24 +26,24 @@
   </head>
 <body class="welcome-body">
     <div class="welcome-container">
-        <div class="welcome-logo">🍽️ HATOD</div>
+        <img src="public/logos/logo_192x192.png" alt="HATOD Logo" class="welcome-logo">
         <div class="welcome-tagline">Your Gateway to Delicious Dining</div>
-        <div class="welcome-loading-text">Welcome! Redirecting you to browse restaurants...</div>
+        <div class="welcome-loading-text">Welcome! Redirecting you to customer login...</div>
         <div class="welcome-spinner"></div>
-        <div class="welcome-redirect-info">Please wait while we prepare your dining experience</div>
+        <div class="welcome-redirect-info">Please wait while we prepare your experience</div>
     </div>
 
     <script>
-        // Redirect to restaurant browse page after 3 seconds
+        // Redirect to customer login page after 3 seconds
         setTimeout(function() {
-            window.location.href = 'pages/restaurants/restaurant_browse.html';
-        }, 3000);
+            window.location.href = 'pages/customers/customer_login.html';
+        }, 3000); 
 
         // Optional: Add a manual redirect link after 5 seconds if auto-redirect fails
         setTimeout(function() {
             const container = document.querySelector('.welcome-container');
             const manualLink = document.createElement('a');
-            manualLink.href = 'pages/restaurants/restaurant_browse.html';
+            manualLink.href = 'pages/customers/customer_login.html';
             manualLink.textContent = 'Click here if not redirected automatically';
             manualLink.className = 'welcome-manual-link';
             container.appendChild(manualLink);

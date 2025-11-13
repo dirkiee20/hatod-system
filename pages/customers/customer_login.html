@@ -31,11 +31,6 @@
                     <a href="../restaurants/restaurant_browse.html" class="text-text-secondary hover:text-primary transition-smooth">Browse Restaurants</a>
                     <a href="customer_login.html" class="text-primary font-medium border-b-2 border-primary pb-1">Sign In</a>
                 </nav>
-
-                <!-- Sign Up Link -->
-                <div class="flex items-center space-x-4">
-                    <a href="customer_registration.html" class="text-text-secondary hover:text-primary transition-smooth text-sm">Don't have an account? Sign Up</a>
-                </div>
             </div>
         </div>
     </header>
@@ -196,7 +191,7 @@
                 let isValid = true;
 
                 // Validate email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+?/;
                 if (!email || !emailRegex.test(email)) {
                     emailError.classList.remove('hidden');
                     isValid = false;

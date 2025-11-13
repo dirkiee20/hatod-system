@@ -171,7 +171,7 @@
                 let isValid = true;
 
                 // Validate email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+?/;
                 if (!email || !emailRegex.test(email)) {
                     emailError.classList.remove('hidden');
                     isValid = false;

@@ -51,11 +51,27 @@
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <!-- Page Header -->
+        <!-- Tab Navigation -->
         <div class="mb-8">
-            <h2 class="text-3xl font-bold text-text-primary mb-2">Restaurant Dashboard</h2>
-            <p class="text-text-secondary">Manage your orders and track performance</p>
+            <div class="border-b border-border">
+                <nav class="-mb-px flex space-x-8">
+                    <button id="dashboardTab" class="tab-button active whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm border-primary text-primary">
+                        Dashboard
+                    </button>
+                    <button id="addMenuTab" class="tab-button whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm border-transparent text-text-secondary hover:text-text-primary hover:border-border">
+                        Add Menu Item
+                    </button>
+                </nav>
+            </div>
         </div>
+
+        <!-- Tab Content -->
+        <div id="dashboardContent" class="tab-content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-text-primary mb-2">Restaurant Dashboard</h2>
+                <p class="text-text-secondary">Manage your orders and track performance</p>
+            </div>
 
         <!-- Notification Panel -->
         <section class="mb-6">
@@ -108,7 +124,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-text-secondary text-sm font-medium">Today's Revenue</p>
-                        <p class="text-2xl font-bold text-text-primary mt-1">$486.50</p>
+                        <p class="text-2xl font-bold text-text-primary mt-1">₱486.50</p>
                         <div class="flex items-center mt-2">
                             <svg class="w-4 h-4 text-success mr-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
@@ -175,13 +191,7 @@
         <section class="mb-8">
             <div class="bg-surface rounded-lg p-6 shadow-card border border-border">
                 <h3 class="text-lg font-semibold text-text-primary mb-4">Quick Actions</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <button class="flex items-center justify-center space-x-2 bg-primary text-white px-4 py-3 rounded-lg hover:bg-primary-600 transition-smooth btn-hover">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                        </svg>
-                        <span>Add Menu Item</span>
-                    </button>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <button class="flex items-center justify-center space-x-2 bg-secondary text-white px-4 py-3 rounded-lg hover:bg-secondary-700 transition-smooth btn-hover">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
@@ -263,7 +273,7 @@
                                 </div>
                                 
                                 <div class="flex items-center justify-between text-sm">
-                                    <span class="font-medium text-text-primary">Total: $34.99</span>
+                                    <span class="font-medium text-text-primary">Total: ₱34.99</span>
                                     <span class="text-text-secondary">Est. Prep: 20 min</span>
                                 </div>
                             </div>
@@ -311,7 +321,7 @@
                                 </div>
                                 
                                 <div class="flex items-center justify-between text-sm">
-                                    <span class="font-medium text-text-primary">Total: $28.50</span>
+                                    <span class="font-medium text-text-primary">Total: ₱28.50</span>
                                     <span class="text-text-secondary">Prep Time: 12 min remaining</span>
                                 </div>
                             </div>
@@ -358,7 +368,7 @@
                                 </div>
                                 
                                 <div class="flex items-center justify-between text-sm">
-                                    <span class="font-medium text-text-primary">Total: $22.75</span>
+                                    <span class="font-medium text-text-primary">Total: ₱22.75</span>
                                     <span class="text-success text-sm font-medium">Ready for pickup</span>
                                 </div>
                             </div>
@@ -426,11 +436,11 @@
                         
                         <!-- Y-axis Labels -->
                         <g fill="#718096" font-size="10" text-anchor="end">
-                            <text x="45" y="185">$0</text>
-                            <text x="45" y="145">$100</text>
-                            <text x="45" y="105">$200</text>
-                            <text x="45" y="65">$300</text>
-                            <text x="45" y="25">$400</text>
+                            <text x="45" y="185">₱0</text>
+                            <text x="45" y="145">₱100</text>
+                            <text x="45" y="105">₱200</text>
+                            <text x="45" y="65">₱300</text>
+                            <text x="45" y="25">₱400</text>
                         </g>
                     </svg>
                 </div>
@@ -452,7 +462,7 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="font-medium text-text-primary">$324.00</p>
+                            <p class="font-medium text-text-primary">₱324.00</p>
                             <p class="text-sm text-success">+12%</p>
                         </div>
                     </div>
@@ -469,7 +479,7 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="font-medium text-text-primary">$266.00</p>
+                            <p class="font-medium text-text-primary">₱266.00</p>
                             <p class="text-sm text-success">+8%</p>
                         </div>
                     </div>
@@ -486,7 +496,7 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="font-medium text-text-primary">$132.00</p>
+                            <p class="font-medium text-text-primary">₱132.00</p>
                             <p class="text-sm text-success">+5%</p>
                         </div>
                     </div>
@@ -503,13 +513,156 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="font-medium text-text-primary">$54.00</p>
+                            <p class="font-medium text-text-primary">₱54.00</p>
                             <p class="text-sm text-warning">-2%</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        </div>
+
+        <!-- Add Menu Item Tab Content -->
+        <div id="addMenuContent" class="tab-content hidden">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-text-primary mb-2">Add Menu Item</h2>
+                <p class="text-text-secondary">Add a new item to your restaurant menu</p>
+            </div>
+
+            <!-- Add Menu Form -->
+            <div class="bg-surface rounded-lg p-6 shadow-card border border-border">
+                <form id="addMenuForm" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Left Column - Image Upload -->
+                    <div class="space-y-4">
+                        <h4 class="text-md font-medium text-text-primary">Item Image</h4>
+
+                        <!-- Image Preview/Upload Area -->
+                        <div class="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-colors">
+                            <div id="imagePreview" class="hidden mb-4">
+                                <img id="previewImg" src="" alt="Preview" class="max-w-full h-48 object-cover rounded-lg mx-auto">
+                            </div>
+
+                            <div id="uploadArea">
+                                <svg class="w-12 h-12 text-text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                                </svg>
+                                <p class="text-text-secondary mb-2">Drag and drop an image here, or click to browse</p>
+                                <input type="file"
+                                       id="itemImageFile"
+                                       name="itemImageFile"
+                                       accept="image/*"
+                                       class="hidden">
+                                <button type="button"
+                                        id="uploadBtn"
+                                        class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-smooth btn-hover">
+                                    Choose Image
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Image URL Alternative -->
+                        <div class="space-y-2">
+                            <label class="text-sm text-text-secondary">Or enter image URL:</label>
+                            <input type="url"
+                                   id="itemImageUrl"
+                                   name="itemImageUrl"
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="https://example.com/image.jpg">
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Item Information -->
+                    <div class="space-y-4">
+                        <h4 class="text-md font-medium text-text-primary">Item Information</h4>
+
+                        <!-- Item Name -->
+                        <div>
+                            <label for="itemName" class="block text-sm font-medium text-text-primary mb-1">Item Name *</label>
+                            <input type="text"
+                                   id="itemName"
+                                   name="itemName"
+                                   required
+                                   class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                   placeholder="Enter item name">
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <label for="itemDescription" class="block text-sm font-medium text-text-primary mb-1">Description *</label>
+                            <textarea id="itemDescription"
+                                      name="itemDescription"
+                                      rows="4"
+                                      required
+                                      class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth resize-vertical"
+                                      placeholder="Describe the item"></textarea>
+                        </div>
+
+                        <!-- Price and Category Row -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- Price -->
+                            <div>
+                                <label for="itemPrice" class="block text-sm font-medium text-text-primary mb-1">Price *</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">₱</span>
+                                    <input type="number"
+                                           id="itemPrice"
+                                           name="itemPrice"
+                                           step="0.01"
+                                           min="0"
+                                           required
+                                           class="w-full pl-8 pr-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                           placeholder="0.00">
+                                </div>
+                            </div>
+
+                            <!-- Category -->
+                            <div>
+                                <label for="itemCategory" class="block text-sm font-medium text-text-primary mb-1">Category *</label>
+                                <select id="itemCategory"
+                                        name="itemCategory"
+                                        required
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
+                                    <option value="">Select category</option>
+                                    <option value="pizzas">Pizzas</option>
+                                    <option value="appetizers">Appetizers</option>
+                                    <option value="salads">Salads</option>
+                                    <option value="desserts">Desserts</option>
+                                    <option value="drinks">Drinks</option>
+                                    <option value="sides">Sides</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="flex items-center pt-4">
+                            <input type="checkbox"
+                                   id="itemAvailable"
+                                   name="itemAvailable"
+                                   checked
+                                   class="h-4 w-4 text-primary focus:ring-primary border-border rounded">
+                            <label for="itemAvailable" class="ml-2 text-sm text-text-primary">
+                                Available for ordering
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Form Actions -->
+                <div class="flex items-center justify-end space-x-3 mt-8 pt-6 border-t border-border">
+                    <button id="resetBtn"
+                            type="button"
+                            class="px-4 py-2 text-text-secondary bg-gray-100 hover:bg-gray-200 rounded-lg transition-smooth">
+                        Reset
+                    </button>
+                    <button id="saveBtn"
+                            type="button"
+                            class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 transition-smooth btn-hover">
+                        Add Item
+                    </button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Mobile Bottom Tab Navigation -->
@@ -542,6 +695,7 @@
         </div>
     </nav>
 
+
     <!-- Footer -->
     <footer class="bg-surface border-t border-border mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -555,6 +709,117 @@
             </div>
         </div>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab functionality
+        const dashboardTab = document.getElementById('dashboardTab');
+        const addMenuTab = document.getElementById('addMenuTab');
+        const dashboardContent = document.getElementById('dashboardContent');
+        const addMenuContent = document.getElementById('addMenuContent');
+        const tabButtons = document.querySelectorAll('.tab-button');
+
+        function switchTab(activeTab, activeContent) {
+            // Remove active class from all tabs
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.remove('border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-text-secondary');
+            });
+
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Activate selected tab
+            activeTab.classList.add('active');
+            activeTab.classList.remove('border-transparent', 'text-text-secondary');
+            activeTab.classList.add('border-primary', 'text-primary');
+
+            // Show selected content
+            activeContent.classList.remove('hidden');
+        }
+
+        dashboardTab.addEventListener('click', function() {
+            switchTab(dashboardTab, dashboardContent);
+        });
+
+        addMenuTab.addEventListener('click', function() {
+            switchTab(addMenuTab, addMenuContent);
+        });
+
+        // Form functionality
+        const addMenuForm = document.getElementById('addMenuForm');
+        const saveBtn = document.getElementById('saveBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // Image upload functionality
+        const uploadBtn = document.getElementById('uploadBtn');
+        const itemImageFile = document.getElementById('itemImageFile');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const uploadArea = document.getElementById('uploadArea');
+
+        uploadBtn.addEventListener('click', function() {
+            itemImageFile.click();
+        });
+
+        itemImageFile.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    uploadArea.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Reset form function
+        function resetForm() {
+            addMenuForm.reset();
+            // Reset image preview
+            imagePreview.classList.add('hidden');
+            uploadArea.classList.remove('hidden');
+            previewImg.src = '';
+            itemImageFile.value = '';
+        }
+
+        // Handle form reset
+        resetBtn.addEventListener('click', resetForm);
+
+        // Handle form submission
+        saveBtn.addEventListener('click', function() {
+            if (addMenuForm.checkValidity()) {
+                // Get form data
+                const formData = new FormData(addMenuForm);
+                const itemData = {
+                    name: formData.get('itemName'),
+                    description: formData.get('itemDescription'),
+                    price: parseFloat(formData.get('itemPrice')),
+                    category: formData.get('itemCategory'),
+                    imageUrl: formData.get('itemImageUrl') || null,
+                    imageFile: formData.get('itemImageFile') || null,
+                    available: formData.get('itemAvailable') === 'on'
+                };
+
+                // Here you would typically send the data to your backend
+                console.log('Adding menu item:', itemData);
+
+                // Show success message (you can replace this with a proper toast notification)
+                alert(`Menu item "${itemData.name}" added successfully!`);
+
+                // Reset form after successful submission
+                resetForm();
+            } else {
+                // Trigger browser validation
+                addMenuForm.reportValidity();
+            }
+        });
+    });
+</script>
 <script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>
 </body>
 </html>
