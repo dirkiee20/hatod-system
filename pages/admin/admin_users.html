@@ -382,25 +382,74 @@
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div>
-                                <label for="restaurantCity" class="block text-sm font-medium text-text-primary mb-1">City *</label>
-                                <input type="text" id="restaurantCity" name="city" required
-                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                       placeholder="City">
-                            </div>
-                            <div>
-                                <label for="restaurantState" class="block text-sm font-medium text-text-primary mb-1">State/Province</label>
-                                <input type="text" id="restaurantState" name="state"
-                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                       placeholder="State/Province">
-                            </div>
-                            <div>
-                                <label for="restaurantZip" class="block text-sm font-medium text-text-primary mb-1">ZIP/Postal Code</label>
-                                <input type="text" id="restaurantZip" name="zipCode"
-                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                       placeholder="ZIP/Postal Code">
-                            </div>
-                        </div>
+                             <div>
+                                 <label for="restaurantCity" class="block text-sm font-medium text-text-primary mb-1">City *</label>
+                                 <input type="text" id="restaurantCity" name="city" required
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                        placeholder="City">
+                             </div>
+                             <div>
+                                 <label for="restaurantState" class="block text-sm font-medium text-text-primary mb-1">State/Province</label>
+                                 <input type="text" id="restaurantState" name="state"
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                        placeholder="State/Province">
+                             </div>
+                             <div>
+                                 <label for="restaurantZip" class="block text-sm font-medium text-text-primary mb-1">ZIP/Postal Code</label>
+                                 <input type="text" id="restaurantZip" name="zipCode"
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                        placeholder="ZIP/Postal Code">
+                             </div>
+                         </div>
+
+                         <div>
+                             <label for="restaurantDescription" class="block text-sm font-medium text-text-primary mb-1">Description</label>
+                             <textarea id="restaurantDescription" name="description" rows="3"
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth resize-vertical"
+                                       placeholder="Brief description of the restaurant"></textarea>
+                         </div>
+
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <div>
+                                 <label for="priceRange" class="block text-sm font-medium text-text-primary mb-1">Price Range</label>
+                                 <select id="priceRange" name="priceRange"
+                                         class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
+                                     <option value="">Select price range</option>
+                                     <option value="$">$ - Budget friendly</option>
+                                     <option value="$$">$$ - Moderate</option>
+                                     <option value="$$$">$$$ - Expensive</option>
+                                     <option value="$$$$">$$$$ - Very expensive</option>
+                                 </select>
+                             </div>
+                             <div>
+                                 <label for="deliveryTime" class="block text-sm font-medium text-text-primary mb-1">Delivery Time (minutes)</label>
+                                 <input type="number" id="deliveryTime" name="deliveryTimeMinutes" min="5" max="120" value="30"
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                        placeholder="30">
+                             </div>
+                         </div>
+
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <div>
+                                 <label for="deliveryFee" class="block text-sm font-medium text-text-primary mb-1">Delivery Fee ($)</label>
+                                 <input type="number" id="deliveryFee" name="deliveryFee" min="0" step="0.01" value="0.00"
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                        placeholder="0.00">
+                             </div>
+                             <div>
+                                 <label for="minimumOrder" class="block text-sm font-medium text-text-primary mb-1">Minimum Order ($)</label>
+                                 <input type="number" id="minimumOrder" name="minimumOrder" min="0" step="0.01" value="0.00"
+                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                        placeholder="0.00">
+                             </div>
+                         </div>
+
+                         <div>
+                             <label for="restaurantImageUrl" class="block text-sm font-medium text-text-primary mb-1">Image URL</label>
+                             <input type="url" id="restaurantImageUrl" name="imageUrl"
+                                    class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                    placeholder="https://example.com/restaurant-image.jpg">
+                         </div>
                     </div>
 
                     <!-- Account Settings -->
@@ -624,10 +673,16 @@
         const addRestaurantContent = document.getElementById('addRestaurantContent');
         const addDeliveryContent = document.getElementById('addDeliveryContent');
         const tabButtons = document.querySelectorAll('.tab-button');
+        console.log('Tab buttons found:', tabButtons.length);
+        console.log('addRestaurantTab element:', addRestaurantTab);
 
         function switchTab(activeTab, activeContent) {
+            console.log('Switching to tab:', activeTab.id);
+            console.log('activeTab before:', activeTab.classList.toString());
+            console.log('activeContent before:', activeContent.classList.toString());
             // Remove active class from all tabs
             tabButtons.forEach(btn => {
+                console.log('Removing active from:', btn.id);
                 btn.classList.remove('active');
                 btn.classList.remove('border-primary', 'text-primary');
                 btn.classList.add('border-transparent', 'text-text-secondary');
@@ -645,6 +700,8 @@
 
             // Show selected content
             activeContent.classList.remove('hidden');
+            console.log('activeTab after:', activeTab.classList.toString());
+            console.log('activeContent after:', activeContent.classList.toString());
         }
 
         usersListTab.addEventListener('click', function() {
@@ -652,6 +709,7 @@
         });
 
         addRestaurantTab.addEventListener('click', function() {
+            console.log('Add Restaurant tab clicked');
             switchTab(addRestaurantTab, addRestaurantContent);
         });
 
@@ -685,7 +743,13 @@
                     city: formData.get('city'),
                     state: formData.get('state'),
                     zipCode: formData.get('zipCode'),
-                    cuisineType: formData.get('cuisineType')
+                    cuisineType: formData.get('cuisineType'),
+                    description: formData.get('description'),
+                    priceRange: formData.get('priceRange'),
+                    deliveryTimeMinutes: formData.get('deliveryTimeMinutes'),
+                    deliveryFee: formData.get('deliveryFee'),
+                    minimumOrder: formData.get('minimumOrder'),
+                    imageUrl: formData.get('imageUrl')
                 };
 
                 // Here you would typically send the data to your backend
