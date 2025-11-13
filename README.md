@@ -1,174 +1,198 @@
 # HATOD - Food Ordering & Delivery System
 
-A modern food ordering and delivery system for local restaurants, built with HTML, Tailwind CSS, and JavaScript. Accessible on both mobile and web platforms.
+A modern food ordering and delivery platform with a fully responsive frontend (HTML + Tailwind CSS) and a production-ready REST API powered by Node.js, Express, and PostgreSQL.
 
 ## 🚀 Features
 
-- **HTML5** - Modern HTML structure with best practices
-- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
-- **Responsive Design** - Mobile-first approach for all screen sizes
-- **Complete Food Ordering Flow** - Browse restaurants, view menus, cart, checkout, and order tracking
-- **Customer & Restaurant Portals** - Separate interfaces for customers and restaurant owners
-- **Admin Dashboard** - Administrative interface for system management
+- Responsive frontend built with HTML5 and Tailwind CSS
+- Role-based portals for customers, restaurants, riders, and admins
+- Express API with JWT auth, validation, and centralized error handling
+- PostgreSQL schema covering restaurants, menus, orders, deliveries, payments, and reviews
+- Database-backed endpoints using parameterized SQL and transactions
+- Modular architecture with clear separation of routes, controllers, middleware, and utilities
 
 ## 📋 Prerequisites
 
-- **Node.js** (v14.x or higher) - [Download here](https://nodejs.org/)
-- **npm** (comes with Node.js) or **yarn**
+- **Node.js** ≥ 18.x (LTS recommended) – [download](https://nodejs.org/)
+- **npm** (bundled with Node.js)
+- **PostgreSQL** ≥ 13.x
 
-## 🛠️ Installation & Setup
+## 🛠️ Installation
 
-1. **Install dependencies:**
 ```bash
 npm install
 ```
 
-2. **Build the CSS:**
+## ⚙️ Environment Variables
+
+Create a `.env` file in the project root (see `docs/env.example`) and configure:
+
+| Variable | Description | Example |
+| --- | --- | --- |
+| `PORT` | API port | `4000` |
+| `CORS_ORIGIN` | Comma-separated whitelist of origins | `http://localhost:8080` |
+| `DATABASE_URL` | Full PostgreSQL connection string | `postgres://user:pw@localhost:5432/hatod` |
+| `PGHOST` / `PGPORT` / `PGUSER` / `PGPASSWORD` / `PGDATABASE` | Alternative DB settings if `DATABASE_URL` not provided | – |
+| `PGSSL` | Enable SSL (`true`/`false`) | `false` |
+| `JWT_SECRET` / `JWT_REFRESH_SECRET` | Secrets for JWT signing | – |
+| `JWT_EXPIRES_IN` / `JWT_REFRESH_EXPIRES_IN` | Token TTLs | `1h` / `7d` |
+| `BCRYPT_SALT_ROUNDS` | Hashing cost factor | `12` |
+
+> Apply the schema (`database/schema.sql`) and optional seed data (`database/seed.sql`) before starting the API.
+
+## 🚦 Running the project
+
+### API Server
+
 ```bash
-npm run build:css
+npm run server       # starts Express on PORT (default 4000)
+# or
+npm run dev:server   # starts with nodemon
 ```
 
-## 🚀 Running the Application
+### Frontend
 
-### Option 1: Quick Start (Recommended)
 ```bash
-npm start
+npm run build:css    # one-time CSS build
+npm start            # build CSS and serve static site on 8080
 ```
-This will:
-- Build the CSS
-- Start a local web server on port 8080
-- Automatically open your browser
 
-### Option 2: Development Mode
+For live development:
 
-**Terminal 1 - Watch CSS changes:**
 ```bash
-npm run dev
-```
-This watches for CSS changes and rebuilds automatically.
+# Terminal 1
+npm run dev          # watch Tailwind CSS
 
-**Terminal 2 - Start web server:**
-```bash
-npm run serve
-```
-This starts a local server on `http://localhost:8080`
-
-### Option 3: Manual Server Setup
-
-If you don't want to use the npm script, you can use any of these methods:
-
-**Using Python (if installed):**
-```bash
-# Python 3
-python -m http.server 8080
-
-# Python 2
-python -m SimpleHTTPServer 8080
+# Terminal 2
+npm run serve        # serve static site on 8080
 ```
 
-**Using PHP (if installed):**
-```bash
-php -S localhost:8080
+## 🌐 Frontend → API integration
+
+Expose the API URL before page scripts run:
+
+```html
+<script>
+  window.__HATOD_API_BASE_URL__ = 'http://localhost:4000/api';
+</script>
+<script src="../../public/dhws-data-injector.js"></script>
 ```
 
-**Using VS Code Live Server:**
-- Install the "Live Server" extension
-- Right-click on `index.html` and select "Open with Live Server"
+If omitted, the frontend falls back to `${window.location.origin}/api`.
 
-## 📁 Project Structure
+## 📁 Project structure
 
 ```
-hatod/
-├── css/
-│   ├── tailwind.css   # Tailwind source file with custom utilities
-│   ├── main.css       # Compiled CSS (generated)
-│   └── pages.css      # Page-specific custom styles
-├── pages/             # HTML pages
-│   ├── restaurant_browse.html
-│   ├── restaurant_menu.html
-│   ├── shopping_cart.html
-│   ├── checkout.html
-│   ├── payment_confirmation.html
-│   ├── order_tracking.html
-│   ├── order_history.html
-│   ├── customer_login.html
-│   ├── customer_registration.html
-│   ├── customer_profile.html
-│   ├── restaurant_login.html
-│   ├── restaurant_dashboard.html
-│   └── admin_dashboard.html
-├── public/            # Public assets
-├── index.html         # Main entry point
-├── package.json       # Project dependencies and scripts
-└── tailwind.config.js # Tailwind CSS configuration
+hatod-system/
+├── api/                   # Express application
+│   ├── app.js             # Express bootstrap
+│   ├── server.js          # HTTP server entry point
+│   ├── config/            # DB and configuration helpers
+│   ├── controllers/       # Route handlers
+│   ├── middleware/        # Auth, validation, error handling
+│   ├── routes/            # Route definitions
+│   └── utils/             # Shared helpers (async, tokens, errors)
+├── css/                   # Tailwind source and compiled CSS
+├── database/              # SQL schema, seeds, setup scripts
+├── pages/                 # Static HTML pages
+├── public/                # Static assets + client helpers
+├── index.html             # Landing page
+├── package.json           # Scripts & dependencies
+└── tailwind.config.js     # Tailwind configuration
 ```
 
-## 🎨 Styling
+## 📦 NPM scripts
 
-This project uses Tailwind CSS for styling. The CSS is organized into:
-- `css/tailwind.css` - Tailwind source file with custom utilities
-- `css/main.css` - Compiled CSS (generated by Tailwind)
-- `css/pages.css` - Page-specific custom styles
+| Script | Purpose |
+| --- | --- |
+| `build:css` | Compile Tailwind once |
+| `watch:css` / `dev` | Watch and recompile Tailwind |
+| `serve` | Serve static frontend (http-server @ 8080) |
+| `start` | Build CSS then serve frontend |
+| `server` | Start Express API |
+| `dev:server` | Start Express API with nodemon |
 
-## 🧩 Customization
+## 🛣️ REST API Reference
 
-To customize the Tailwind configuration, edit the `tailwind.config.js` file.
+Base URL: `http://localhost:4000/api`
 
-## 📦 Available Scripts
+### Auth
 
-- `npm run build:css` - Build CSS once (for production)
-- `npm run watch:css` - Watch for CSS changes and rebuild automatically
-- `npm run serve` - Start a local web server on port 8080
-- `npm start` - Build CSS and start server (all-in-one command)
-- `npm run dev` - Watch CSS changes (development mode)
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `POST` | `/auth/register` | Customer/restaurant self-registration |
+| `POST` | `/auth/login` | Issue access + refresh tokens |
+| `POST` | `/auth/refresh` | Refresh access token |
 
-## 📱 Accessing the Application
+### Admin (role: `admin`)
 
-Once the server is running, open your browser and navigate to:
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/admin/users` | Paginated users with filters |
+| `GET` | `/admin/users/stats` | User totals & activity snapshot |
+| `POST` | `/admin/users/restaurants` | Create restaurant owner + restaurant |
+| `POST` | `/admin/users/delivery` | Create rider + profile |
+| `PATCH` | `/admin/users/:userId/activate` | Activate user |
+| `PATCH` | `/admin/users/:userId/deactivate` | Deactivate user |
+| `GET` | `/admin/overview` | Dashboard totals & recent orders |
+| `GET` | `/admin/orders` | Paginated order list |
 
-- **Main Application:** `http://localhost:8080`
-- **Direct Pages:**
-  - Browse Restaurants: `http://localhost:8080/pages/restaurant_browse.html`
-  - Customer Login: `http://localhost:8080/pages/customer_login.html`
-  - Restaurant Login: `http://localhost:8080/pages/restaurant_login.html`
-  - Admin Dashboard: `http://localhost:8080/pages/admin_dashboard.html`
+### Customers (roles: `customer`, `admin`)
 
-## 📱 Responsive Design
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/customers/:customerId/profile` | Fetch profile |
+| `PUT` | `/customers/:customerId/profile` | Update profile |
+| `GET` | `/customers/:customerId/addresses` | List saved addresses |
+| `POST` | `/customers/:customerId/addresses` | Create address |
+| `PUT` | `/customers/:customerId/addresses/:addressId` | Update address |
+| `DELETE` | `/customers/:customerId/addresses/:addressId` | Delete address |
+| `GET` | `/customers/:customerId/orders` | Order history |
 
-The app is built with responsive design using Tailwind CSS breakpoints:
+### Restaurants
 
-- `sm`: 640px and up
-- `md`: 768px and up
-- `lg`: 1024px and up
-- `xl`: 1280px and up
-- `2xl`: 1536px and up
+| Method | Endpoint | Description | Auth |
+| --- | --- | --- | --- |
+| `GET` | `/restaurants` | Public restaurant listing (filters supported) | – |
+| `GET` | `/restaurants/:restaurantId` | Restaurant details | – |
+| `GET` | `/restaurants/:restaurantId/menu` | Categories + menu items | – |
+| `POST` | `/restaurants/:restaurantId/menu/categories` | Create category | Owner/Admin |
+| `POST` | `/restaurants/:restaurantId/menu/items` | Create menu item | Owner/Admin |
+| `PUT` | `/restaurants/:restaurantId/menu/items/:menuItemId` | Update menu item | Owner/Admin |
+| `DELETE` | `/restaurants/:restaurantId/menu/items/:menuItemId` | Delete menu item | Owner/Admin |
+| `GET` | `/restaurants/:restaurantId/orders` | Restaurant order feed | Owner/Admin |
+| `PATCH` | `/restaurants/:restaurantId` | Update restaurant profile | Owner/Admin |
+| `POST` | `/restaurants/:restaurantId/toggle-status` | Toggle open/closed | Owner/Admin |
 
-## 🔧 Troubleshooting
+### Orders
 
-### CSS not loading?
-Make sure you've built the CSS first:
-```bash
-npm run build:css
-```
+| Method | Endpoint | Description | Auth |
+| --- | --- | --- | --- |
+| `POST` | `/orders` | Create new order (items + totals) | Customer |
+| `GET` | `/orders/:orderId` | Order details, items, delivery info | Auth required |
+| `PATCH` | `/orders/:orderId/status` | Update status & timeline | Owner/Admin/Rider/Customer (based on ownership) |
+| `GET` | `/orders/:orderId/history` | Status change history | Auth required |
 
-### Port already in use?
-Change the port in the serve script:
-```bash
-npx http-server . -p 3000
-```
+### Delivery / Riders (roles: `delivery`, `admin`)
 
-### Styles not updating?
-- Make sure `watch:css` is running in development
-- Clear your browser cache
-- Hard refresh (Ctrl+Shift+R or Cmd+Shift+R)
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/delivery/riders/:riderId/assignments` | Rider assignments (filterable) |
+| `PATCH` | `/delivery/assignments/:deliveryId/status` | Update delivery status |
+| `POST` | `/delivery/assignments/:deliveryId/claim` | Claim unassigned delivery |
 
-## 📝 Notes
+## 🧱 Database highlights
 
-- The application uses static HTML files - no backend is required for the frontend
-- All data is currently mocked/static for demonstration purposes
-- For production, you'll need to connect to a backend API
+- `users` captures all actors (customer, restaurant, rider, admin)
+- `restaurants`, `menu_categories`, `menu_items` manage storefront data
+- `orders`, `order_items`, `order_status_events` track purchases and timelines
+- `deliveries`, `rider_profiles` manage rider assignments and capabilities
+- `payments`, `reviews` support post-purchase workflows
+
+Review `database/schema.sql` for the full schema, triggers, and indexes.
 
 ## 🙏 Acknowledgments
 
 - Built with [Rocket.new](https://rocket.new)
-- Powered by HTML and Tailwind CSS
+- Frontend powered by HTML & Tailwind CSS
+- Backend powered by Express.js & PostgreSQL

@@ -110,6 +110,16 @@ CREATE TABLE orders (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Order status history
+CREATE TABLE order_status_events (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    order_id UUID REFERENCES orders(id) ON DELETE CASCADE,
+    status VARCHAR(30) NOT NULL CHECK (status IN ('pending', 'confirmed', 'preparing', 'ready', 'picked_up', 'delivered', 'cancelled')),
+    note TEXT,
+    created_by UUID REFERENCES users(id),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Order items
 CREATE TABLE order_items (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -132,6 +142,17 @@ CREATE TABLE deliveries (
     estimated_delivery_time TIMESTAMP WITH TIME ZONE,
     actual_delivery_time TIMESTAMP WITH TIME ZONE,
     delivery_notes TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Rider profile details
+CREATE TABLE rider_profiles (
+    user_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    vehicle_type VARCHAR(50),
+    license_number VARCHAR(100),
+    license_expiry DATE,
+    delivery_radius_km INTEGER,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -180,6 +201,7 @@ CREATE INDEX idx_orders_status ON orders(status);
 CREATE INDEX idx_order_items_order ON order_items(order_id);
 CREATE INDEX idx_deliveries_order ON deliveries(order_id);
 CREATE INDEX idx_deliveries_rider ON deliveries(rider_id);
+CREATE INDEX idx_order_status_events_order ON order_status_events(order_id);
 CREATE INDEX idx_payments_order ON payments(order_id);
 CREATE INDEX idx_reviews_restaurant ON reviews(restaurant_id);
 CREATE INDEX idx_reviews_customer ON reviews(customer_id);
@@ -198,6 +220,7 @@ CREATE TRIGGER update_restaurants_updated_at BEFORE UPDATE ON restaurants FOR EA
 CREATE TRIGGER update_menu_items_updated_at BEFORE UPDATE ON menu_items FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TRIGGER update_orders_updated_at BEFORE UPDATE ON orders FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TRIGGER update_deliveries_updated_at BEFORE UPDATE ON deliveries FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_rider_profiles_updated_at BEFORE UPDATE ON rider_profiles FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TRIGGER update_payments_updated_at BEFORE UPDATE ON payments FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TRIGGER update_reviews_updated_at BEFORE UPDATE ON reviews FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
