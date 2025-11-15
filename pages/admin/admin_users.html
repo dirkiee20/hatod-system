@@ -82,12 +82,12 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-text-secondary text-sm font-medium">Total Customers</p>
-                        <p class="text-2xl font-bold text-text-primary mt-1">18,542</p>
+                        <p id="totalCustomersValue" class="text-2xl font-bold text-text-primary mt-1">--</p>
                         <div class="flex items-center mt-2">
                             <svg class="w-4 h-4 text-success mr-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
                             </svg>
-                            <span class="text-success text-sm font-medium">+8.2%</span>
+                            <span id="totalCustomersDelta" class="text-success text-sm font-medium">--</span>
                         </div>
                     </div>
                     <div class="bg-accent-50 p-3 rounded-lg">
@@ -102,12 +102,12 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-text-secondary text-sm font-medium">Restaurant Owners</p>
-                        <p class="text-2xl font-bold text-text-primary mt-1">247</p>
+                        <p id="restaurantOwnersValue" class="text-2xl font-bold text-text-primary mt-1">--</p>
                         <div class="flex items-center mt-2">
                             <svg class="w-4 h-4 text-success mr-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
                             </svg>
-                            <span class="text-success text-sm font-medium">+12%</span>
+                            <span id="restaurantOwnersDelta" class="text-success text-sm font-medium">--</span>
                         </div>
                     </div>
                     <div class="bg-primary-50 p-3 rounded-lg">
@@ -122,12 +122,12 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-text-secondary text-sm font-medium">Active This Month</p>
-                        <p class="text-2xl font-bold text-text-primary mt-1">15,203</p>
+                        <p id="activeThisMonthValue" class="text-2xl font-bold text-text-primary mt-1">--</p>
                         <div class="flex items-center mt-2">
                             <svg class="w-4 h-4 text-success mr-1" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
                             </svg>
-                            <span class="text-success text-sm font-medium">+5.7%</span>
+                            <span id="activeThisMonthDelta" class="text-success text-sm font-medium">--</span>
                         </div>
                     </div>
                     <div class="bg-success-50 p-3 rounded-lg">
@@ -143,21 +143,21 @@
         <div class="bg-surface rounded-lg p-6 shadow-card border border-border mb-6">
             <div class="flex flex-col sm:flex-row gap-4">
                 <div class="flex-1">
-                    <input type="text"
+                    <input id="usersSearchInput" type="text"
                            placeholder="Search users..."
                            class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                 </div>
                 <div class="flex gap-2">
-                    <select class="border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <option>All Users</option>
-                        <option>Customers</option>
-                        <option>Restaurant Owners</option>
+                    <select id="userTypeFilter" class="border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="all">All Users</option>
+                        <option value="customer">Customers</option>
+                        <option value="restaurant">Restaurant Owners</option>
                     </select>
-                    <select class="border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <option>All Status</option>
-                        <option>Active</option>
-                        <option>Inactive</option>
-                        <option>Suspended</option>
+                    <select id="userStatusFilter" class="border border-border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="all">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="suspended">Suspended</option>
                     </select>
                 </div>
             </div>
@@ -182,119 +182,39 @@
                             <th class="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-surface divide-y divide-border">
-                        <tr class="hover:bg-gray-50 transition-smooth">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop" alt="">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-text-primary">Sarah Johnson</div>
-                                        <div class="text-sm text-text-secondary">Customer</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-accent-100 text-accent-600">Customer</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary">sarah.j@email.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-success-100 text-success-600">Active</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">Jan 15, 2024</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary font-medium">47</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button class="text-primary hover:text-primary-600 transition-smooth">View</button>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-gray-50 transition-smooth">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" alt="">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-text-primary">Mario Rossi</div>
-                                        <div class="text-sm text-text-secondary">Restaurant Owner</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-primary-100 text-primary-600">Restaurant</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary">mario@pizzapalace.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-success-100 text-success-600">Active</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">Mar 22, 2024</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary font-medium">-</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button class="text-primary hover:text-primary-600 transition-smooth">View</button>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-gray-50 transition-smooth">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop" alt="">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-text-primary">Emma Davis</div>
-                                        <div class="text-sm text-text-secondary">Customer</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-accent-100 text-accent-600">Customer</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary">emma.d@email.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-success-100 text-success-600">Active</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">Feb 8, 2024</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary font-medium">23</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button class="text-primary hover:text-primary-600 transition-smooth">View</button>
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-gray-50 transition-smooth">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop" alt="">
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-text-primary">John Smith</div>
-                                        <div class="text-sm text-text-secondary">Restaurant Owner</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-primary-100 text-primary-600">Restaurant</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary">john@burgerbarn.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-warning-100 text-warning-600">Suspended</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">Apr 12, 2024</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary font-medium">-</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <button class="text-error hover:text-error-600 transition-smooth">Unsuspend</button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="usersTableBody" class="bg-surface divide-y divide-border"></tbody>
                 </table>
+            </div>
+
+            <div id="usersTableLoading" class="px-6 py-8 border-t border-border hidden">
+                <div class="flex items-center justify-center space-x-3 text-text-secondary">
+                    <svg class="w-5 h-5 animate-spin text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                    </svg>
+                    <span class="text-sm font-medium">Loading users...</span>
+                </div>
+            </div>
+
+            <div id="usersTableEmpty" class="px-6 py-10 border-t border-border text-center hidden">
+                <div class="text-text-secondary text-sm">
+                    No users found for the selected filters.
+                </div>
+            </div>
+
+            <div id="usersTableError" class="px-6 py-6 border-t border-border hidden">
+                <div class="rounded-lg border border-error bg-error-50 text-error px-4 py-3 text-sm">
+                    <span id="usersTableErrorMessage">We couldn't load users right now. Please try again later.</span>
+                </div>
             </div>
 
             <!-- Pagination -->
             <div class="px-6 py-4 border-t border-border">
-                <div class="flex items-center justify-between">
-                    <div class="text-sm text-text-secondary">
-                        Showing 1 to 4 of 18,789 users
+                <div class="flex items-center justify-between flex-col sm:flex-row gap-4">
+                    <div id="usersPaginationInfo" class="text-sm text-text-secondary">
+                        Showing -- users
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <button class="px-3 py-1 border border-border rounded text-sm text-text-secondary hover:bg-gray-50 transition-smooth">Previous</button>
-                        <button class="px-3 py-1 bg-primary text-white border border-primary rounded text-sm">1</button>
-                        <button class="px-3 py-1 border border-border rounded text-sm text-text-secondary hover:bg-gray-50 transition-smooth">2</button>
-                        <button class="px-3 py-1 border border-border rounded text-sm text-text-secondary hover:bg-gray-50 transition-smooth">3</button>
-                        <button class="px-3 py-1 border border-border rounded text-sm text-text-secondary hover:bg-gray-50 transition-smooth">Next</button>
-                    </div>
+                    <div id="usersPaginationControls" class="flex items-center space-x-2"></div>
                 </div>
             </div>
         </div>
@@ -382,74 +302,25 @@
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                             <div>
-                                 <label for="restaurantCity" class="block text-sm font-medium text-text-primary mb-1">City *</label>
-                                 <input type="text" id="restaurantCity" name="city" required
-                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                        placeholder="City">
-                             </div>
-                             <div>
-                                 <label for="restaurantState" class="block text-sm font-medium text-text-primary mb-1">State/Province</label>
-                                 <input type="text" id="restaurantState" name="state"
-                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                        placeholder="State/Province">
-                             </div>
-                             <div>
-                                 <label for="restaurantZip" class="block text-sm font-medium text-text-primary mb-1">ZIP/Postal Code</label>
-                                 <input type="text" id="restaurantZip" name="zipCode"
-                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                        placeholder="ZIP/Postal Code">
-                             </div>
-                         </div>
-
-                         <div>
-                             <label for="restaurantDescription" class="block text-sm font-medium text-text-primary mb-1">Description</label>
-                             <textarea id="restaurantDescription" name="description" rows="3"
-                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth resize-vertical"
-                                       placeholder="Brief description of the restaurant"></textarea>
-                         </div>
-
-                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                             <div>
-                                 <label for="priceRange" class="block text-sm font-medium text-text-primary mb-1">Price Range</label>
-                                 <select id="priceRange" name="priceRange"
-                                         class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
-                                     <option value="">Select price range</option>
-                                     <option value="$">$ - Budget friendly</option>
-                                     <option value="$$">$$ - Moderate</option>
-                                     <option value="$$$">$$$ - Expensive</option>
-                                     <option value="$$$$">$$$$ - Very expensive</option>
-                                 </select>
-                             </div>
-                             <div>
-                                 <label for="deliveryTime" class="block text-sm font-medium text-text-primary mb-1">Delivery Time (minutes)</label>
-                                 <input type="number" id="deliveryTime" name="deliveryTimeMinutes" min="5" max="120" value="30"
-                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                        placeholder="30">
-                             </div>
-                         </div>
-
-                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                             <div>
-                                 <label for="deliveryFee" class="block text-sm font-medium text-text-primary mb-1">Delivery Fee ($)</label>
-                                 <input type="number" id="deliveryFee" name="deliveryFee" min="0" step="0.01" value="0.00"
-                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                        placeholder="0.00">
-                             </div>
-                             <div>
-                                 <label for="minimumOrder" class="block text-sm font-medium text-text-primary mb-1">Minimum Order ($)</label>
-                                 <input type="number" id="minimumOrder" name="minimumOrder" min="0" step="0.01" value="0.00"
-                                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                        placeholder="0.00">
-                             </div>
-                         </div>
-
-                         <div>
-                             <label for="restaurantImageUrl" class="block text-sm font-medium text-text-primary mb-1">Image URL</label>
-                             <input type="url" id="restaurantImageUrl" name="imageUrl"
-                                    class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
-                                    placeholder="https://example.com/restaurant-image.jpg">
-                         </div>
+                            <div>
+                                <label for="restaurantCity" class="block text-sm font-medium text-text-primary mb-1">City *</label>
+                                <input type="text" id="restaurantCity" name="city" required
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="City">
+                            </div>
+                            <div>
+                                <label for="restaurantState" class="block text-sm font-medium text-text-primary mb-1">State/Province</label>
+                                <input type="text" id="restaurantState" name="state"
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="State/Province">
+                            </div>
+                            <div>
+                                <label for="restaurantZip" class="block text-sm font-medium text-text-primary mb-1">ZIP/Postal Code</label>
+                                <input type="text" id="restaurantZip" name="zipCode"
+                                       class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth"
+                                       placeholder="ZIP/Postal Code">
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Account Settings -->
@@ -482,11 +353,11 @@
 
                 <!-- Form Actions -->
                 <div class="flex items-center justify-end space-x-3 mt-8 pt-6 border-t border-border">
-                    <button id="resetRestaurantBtn" type="button"
+                    <button id="resetRestaurantBtn" type="reset"
                             class="px-4 py-2 text-text-secondary bg-gray-100 hover:bg-gray-200 rounded-lg transition-smooth">
                         Reset
                     </button>
-                    <button id="createRestaurantBtn" type="button"
+                    <button id="createRestaurantBtn" type="submit"
                             class="px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary-700 transition-smooth btn-hover">
                         Create Restaurant Account
                     </button>
@@ -606,11 +477,11 @@
 
                 <!-- Form Actions -->
                 <div class="flex items-center justify-end space-x-3 mt-8 pt-6 border-t border-border">
-                    <button id="resetDeliveryBtn" type="button"
+                    <button id="resetDeliveryBtn" type="reset"
                             class="px-4 py-2 text-text-secondary bg-gray-100 hover:bg-gray-200 rounded-lg transition-smooth">
                         Reset
                     </button>
-                    <button id="createDeliveryBtn" type="button"
+                    <button id="createDeliveryBtn" type="submit"
                             class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent-600 transition-smooth btn-hover">
                         Create Delivery Account
                     </button>
@@ -664,158 +535,630 @@
         </div>
     </footer>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Tab functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const API_BASE_URL = window.__HATOD_API_BASE_URL__ || `${window.location.origin.replace(/\/$/, '')}/api`;
+        const DEFAULT_PAGE_SIZE = 10;
+
+        const FALLBACK_USERS = [
+            {
+                id: 'USR-1001',
+                fullName: 'Sarah Johnson',
+                userType: 'customer',
+                email: 'sarah.j@email.com',
+                status: 'active',
+                joinedAt: '2024-01-15',
+                ordersCount: 47,
+                avatarUrl: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop'
+            },
+            {
+                id: 'USR-1023',
+                fullName: 'Mario Rossi',
+                userType: 'restaurant',
+                email: 'mario@pizzapalace.com',
+                status: 'active',
+                joinedAt: '2024-03-22',
+                ordersCount: null,
+                avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop'
+            },
+            {
+                id: 'USR-1034',
+                fullName: 'Emma Davis',
+                userType: 'customer',
+                email: 'emma.d@email.com',
+                status: 'active',
+                joinedAt: '2024-02-08',
+                ordersCount: 23,
+                avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop'
+            },
+            {
+                id: 'USR-1045',
+                fullName: 'John Smith',
+                userType: 'restaurant',
+                email: 'john@burgerbarn.com',
+                status: 'suspended',
+                joinedAt: '2024-04-12',
+                ordersCount: null,
+                avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop'
+            }
+        ];
+
+        const FALLBACK_STATS = {
+            totals: {
+                customers: 18542,
+                restaurants: 247,
+                activeThisMonth: 15203
+            },
+            deltas: {
+                customers: '+8.2%',
+                restaurants: '+12%',
+                activeThisMonth: '+5.7%'
+            }
+        };
+
+        const usersState = {
+            currentPage: 1,
+            pageSize: DEFAULT_PAGE_SIZE,
+            search: '',
+            userType: 'all',
+            status: 'all',
+            total: 0
+        };
+
+        const tabButtons = document.querySelectorAll('.tab-button');
         const usersListTab = document.getElementById('usersListTab');
         const addRestaurantTab = document.getElementById('addRestaurantTab');
         const addDeliveryTab = document.getElementById('addDeliveryTab');
         const usersListContent = document.getElementById('usersListContent');
         const addRestaurantContent = document.getElementById('addRestaurantContent');
         const addDeliveryContent = document.getElementById('addDeliveryContent');
-        const tabButtons = document.querySelectorAll('.tab-button');
-        console.log('Tab buttons found:', tabButtons.length);
-        console.log('addRestaurantTab element:', addRestaurantTab);
+
+        const elements = {
+            searchInput: document.getElementById('usersSearchInput'),
+            userTypeFilter: document.getElementById('userTypeFilter'),
+            userStatusFilter: document.getElementById('userStatusFilter'),
+            tableBody: document.getElementById('usersTableBody'),
+            loadingIndicator: document.getElementById('usersTableLoading'),
+            emptyState: document.getElementById('usersTableEmpty'),
+            errorContainer: document.getElementById('usersTableError'),
+            errorMessage: document.getElementById('usersTableErrorMessage'),
+            paginationInfo: document.getElementById('usersPaginationInfo'),
+            paginationControls: document.getElementById('usersPaginationControls'),
+            totalCustomersValue: document.getElementById('totalCustomersValue'),
+            totalCustomersDelta: document.getElementById('totalCustomersDelta'),
+            restaurantOwnersValue: document.getElementById('restaurantOwnersValue'),
+            restaurantOwnersDelta: document.getElementById('restaurantOwnersDelta'),
+            activeThisMonthValue: document.getElementById('activeThisMonthValue'),
+            activeThisMonthDelta: document.getElementById('activeThisMonthDelta'),
+            createRestaurantForm: document.getElementById('createRestaurantForm'),
+            createDeliveryForm: document.getElementById('createDeliveryForm'),
+            createRestaurantBtn: document.getElementById('createRestaurantBtn'),
+            createDeliveryBtn: document.getElementById('createDeliveryBtn')
+        };
+
+        function toggleHidden(element, shouldHide) {
+            if (!element) return;
+            if (shouldHide) {
+                element.classList.add('hidden');
+            } else {
+                element.classList.remove('hidden');
+            }
+        }
+
+        function resetErrorState() {
+            toggleHidden(elements.errorContainer, true);
+            if (elements.errorMessage) {
+                elements.errorMessage.textContent = '';
+            }
+        }
+
+        function notify(message, isError = false) {
+            if (window.Toastify) {
+                window.Toastify({
+                    text: message,
+                    className: isError ? 'bg-error text-white' : 'bg-success text-white',
+                    gravity: 'top',
+                    position: 'center',
+                    duration: 4000
+                }).showToast();
+                return;
+            }
+            window.alert(message);
+        }
+
+        function setLoading(isLoading) {
+            if (elements.loadingIndicator) {
+                toggleHidden(elements.loadingIndicator, !isLoading);
+            }
+            if (elements.tableBody) {
+                elements.tableBody.classList.toggle('opacity-50', isLoading);
+            }
+        }
+
+        function userTypeLabel(type) {
+            switch (type) {
+                case 'restaurant':
+                    return 'Restaurant Owner';
+                case 'delivery':
+                    return 'Delivery Driver';
+                default:
+                    return 'Customer';
+            }
+        }
+
+        function userTypeBadge(type) {
+            switch (type) {
+                case 'restaurant':
+                    return 'bg-primary-100 text-primary-600';
+                case 'delivery':
+                    return 'bg-secondary-50 text-secondary';
+                default:
+                    return 'bg-accent-100 text-accent-600';
+            }
+        }
+
+        function statusBadge(status) {
+            switch ((status || '').toLowerCase()) {
+                case 'inactive':
+                    return { label: 'Inactive', classes: 'bg-gray-200 text-text-secondary' };
+                case 'suspended':
+                    return { label: 'Suspended', classes: 'bg-warning-100 text-warning-600' };
+                case 'pending':
+                    return { label: 'Pending', classes: 'bg-accent-50 text-accent' };
+                default:
+                    return { label: 'Active', classes: 'bg-success-100 text-success-600' };
+            }
+        }
+
+        function formatDate(value) {
+            if (!value) return '--';
+            const date = new Date(value);
+            if (Number.isNaN(date.getTime())) {
+                return value;
+            }
+            return date.toLocaleDateString(undefined, {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        function formatNumber(value) {
+            if (value === null || value === undefined || value === '') {
+                return '--';
+            }
+            const number = Number(value);
+            if (Number.isNaN(number)) {
+                return String(value);
+            }
+            return new Intl.NumberFormat().format(number);
+        }
+
+        function cleanPayload(payload) {
+            return Object.entries(payload).reduce((acc, [key, value]) => {
+                if (value !== '' && value !== null && value !== undefined) {
+                    acc[key] = value;
+                }
+                return acc;
+            }, {});
+        }
+
+        function renderUsers(users) {
+            const tbody = elements.tableBody;
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+            if (!Array.isArray(users) || users.length === 0) {
+                toggleHidden(elements.emptyState, false);
+                return;
+            }
+
+            toggleHidden(elements.emptyState, true);
+
+            users.forEach((user) => {
+                const {
+                    avatarUrl,
+                    fullName,
+                    firstName,
+                    lastName,
+                    userType,
+                    email,
+                    status,
+                    joinedAt,
+                    createdAt,
+                    ordersCount,
+                    totalOrders,
+                    id
+                } = user;
+
+                const displayName = fullName || [firstName, lastName].filter(Boolean).join(' ') || 'Unknown';
+                const displayUserType = userTypeLabel(userType);
+                const avatar = avatarUrl || 'https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop';
+                const badgeClasses = userTypeBadge(userType);
+                const statusInfo = statusBadge(status);
+                const joinedDate = formatDate(joinedAt || createdAt);
+                const orders = formatNumber(totalOrders ?? ordersCount ?? '--');
+
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50 transition-smooth';
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                            <img class="h-10 w-10 rounded-full object-cover" src="${avatar}" alt="${displayName}">
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-text-primary">${displayName}</div>
+                                <div class="text-sm text-text-secondary">${displayUserType}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full ${badgeClasses}">${displayUserType}</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary">${email || '--'}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full ${statusInfo.classes}">${statusInfo.label}</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">${joinedDate}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-primary font-medium">${orders}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <button class="text-primary hover:text-primary-600 transition-smooth" data-user-id="${id ?? ''}">View</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function createPaginationButton(label, page, options = {}) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.textContent = label;
+
+            const baseClasses = ['px-3', 'py-1', 'border', 'border-border', 'rounded', 'text-sm', 'transition-smooth'];
+            baseClasses.forEach((cls) => button.classList.add(cls));
+
+            if (options.active) {
+                button.classList.add('bg-primary', 'text-white', 'border-primary');
+            } else {
+                button.classList.add('text-text-secondary', 'hover:bg-gray-50');
+            }
+
+            if (options.disabled) {
+                button.disabled = true;
+                button.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                button.addEventListener('click', () => {
+                    usersState.currentPage = page;
+                    fetchUsers();
+                });
+            }
+
+            return button;
+        }
+
+        function updatePagination(meta = {}) {
+            const info = elements.paginationInfo;
+            const controls = elements.paginationControls;
+            if (!info || !controls) return;
+
+            const total = meta.total ?? usersState.total ?? 0;
+            const page = meta.page ?? usersState.currentPage;
+            const pageSize = meta.pageSize ?? usersState.pageSize;
+            const totalPages = meta.totalPages ?? Math.max(1, Math.ceil((total || 0) / pageSize));
+
+            if (total === 0) {
+                info.textContent = 'No users to display';
+            } else {
+                const start = (page - 1) * pageSize + 1;
+                const end = Math.min(total, page * pageSize);
+                info.textContent = `Showing ${start} to ${end} of ${total} users`;
+            }
+
+            controls.innerHTML = '';
+
+            if (totalPages <= 1) {
+                controls.classList.add('hidden');
+                return;
+            }
+
+            controls.classList.remove('hidden');
+            controls.appendChild(createPaginationButton('Previous', Math.max(1, page - 1), { disabled: page === 1 }));
+
+            const maxButtons = 5;
+            let startPage = Math.max(1, page - Math.floor(maxButtons / 2));
+            let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+
+            if (endPage - startPage + 1 < maxButtons) {
+                startPage = Math.max(1, endPage - maxButtons + 1);
+            }
+
+            for (let p = startPage; p <= endPage; p += 1) {
+                controls.appendChild(createPaginationButton(String(p), p, { active: p === page }));
+            }
+
+            controls.appendChild(createPaginationButton('Next', Math.min(totalPages, page + 1), { disabled: page === totalPages }));
+        }
+
+        function showError(message) {
+            if (!elements.errorContainer || !elements.errorMessage) return;
+            elements.errorMessage.textContent = message;
+            toggleHidden(elements.errorContainer, false);
+        }
+
+        function applyStats(stats) {
+            const totals = stats?.totals ?? {};
+            const deltas = stats?.deltas ?? {};
+
+            if (elements.totalCustomersValue) {
+                elements.totalCustomersValue.textContent = formatNumber(totals.customers);
+            }
+            if (elements.totalCustomersDelta) {
+                elements.totalCustomersDelta.textContent = deltas.customers ?? '--';
+            }
+            if (elements.restaurantOwnersValue) {
+                elements.restaurantOwnersValue.textContent = formatNumber(totals.restaurants);
+            }
+            if (elements.restaurantOwnersDelta) {
+                elements.restaurantOwnersDelta.textContent = deltas.restaurants ?? '--';
+            }
+            if (elements.activeThisMonthValue) {
+                elements.activeThisMonthValue.textContent = formatNumber(totals.activeThisMonth);
+            }
+            if (elements.activeThisMonthDelta) {
+                elements.activeThisMonthDelta.textContent = deltas.activeThisMonth ?? '--';
+            }
+        }
+
+        async function fetchUsers() {
+            setLoading(true);
+            resetErrorState();
+            toggleHidden(elements.emptyState, true);
+
+            try {
+                const params = new URLSearchParams({
+                    page: String(usersState.currentPage),
+                    pageSize: String(usersState.pageSize)
+                });
+
+                if (usersState.search) {
+                    params.append('search', usersState.search);
+                }
+                if (usersState.userType !== 'all') {
+                    params.append('userType', usersState.userType);
+                }
+                if (usersState.status !== 'all') {
+                    params.append('status', usersState.status);
+                }
+
+                const response = await fetch(`${API_BASE_URL}/admin/users?${params.toString()}`, {
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load users (${response.status})`);
+                }
+
+                const payload = await response.json();
+                const users = payload?.data ?? payload?.users ?? [];
+                const meta = payload?.meta ?? {
+                    total: payload?.total ?? users.length,
+                    page: payload?.page ?? usersState.currentPage,
+                    pageSize: payload?.pageSize ?? usersState.pageSize,
+                    totalPages: payload?.totalPages
+                };
+
+                usersState.total = meta.total ?? users.length;
+
+                renderUsers(users);
+                updatePagination(meta);
+            } catch (error) {
+                console.error('Error loading users', error);
+                renderUsers(FALLBACK_USERS);
+                usersState.currentPage = 1;
+                usersState.total = FALLBACK_USERS.length;
+                updatePagination({
+                    total: FALLBACK_USERS.length,
+                    page: 1,
+                    pageSize: FALLBACK_USERS.length,
+                    totalPages: 1
+                });
+                showError('Showing sample data because the API is unavailable.');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        async function fetchUserStats() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/users/stats`, {
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load stats (${response.status})`);
+                }
+
+                const payload = await response.json();
+                applyStats(payload?.data ?? payload);
+            } catch (error) {
+                console.error('Error loading user stats', error);
+                applyStats(FALLBACK_STATS);
+            }
+        }
+
+        async function submitUser(endpoint, payload, submitButton, successMessage) {
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json'
+                    },
+                    body: JSON.stringify(cleanPayload(payload))
+                });
+
+                if (!response.ok) {
+                    const errorPayload = await response.json().catch(() => null);
+                    const message = errorPayload?.message || `Failed to create ${payload.userType} account`;
+                    throw new Error(message);
+                }
+
+                await response.json().catch(() => null);
+                notify(successMessage);
+                fetchUsers();
+                fetchUserStats();
+                switchTab(usersListTab, usersListContent);
+                return true;
+            } catch (error) {
+                console.error('Error creating account', error);
+                notify(error.message || 'Something went wrong. Please try again.', true);
+                return false;
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            }
+        }
 
         function switchTab(activeTab, activeContent) {
-            console.log('Switching to tab:', activeTab.id);
-            console.log('activeTab before:', activeTab.classList.toString());
-            console.log('activeContent before:', activeContent.classList.toString());
-            // Remove active class from all tabs
-            tabButtons.forEach(btn => {
-                console.log('Removing active from:', btn.id);
+            tabButtons.forEach((btn) => {
                 btn.classList.remove('active');
                 btn.classList.remove('border-primary', 'text-primary');
                 btn.classList.add('border-transparent', 'text-text-secondary');
+                btn.setAttribute('aria-selected', 'false');
             });
 
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
+            document.querySelectorAll('.tab-content').forEach((content) => {
                 content.classList.add('hidden');
             });
 
-            // Activate selected tab
-            activeTab.classList.add('active');
-            activeTab.classList.remove('border-transparent', 'text-text-secondary');
-            activeTab.classList.add('border-primary', 'text-primary');
+            if (activeTab) {
+                activeTab.classList.add('active');
+                activeTab.classList.remove('border-transparent', 'text-text-secondary');
+                activeTab.classList.add('border-primary', 'text-primary');
+                activeTab.setAttribute('aria-selected', 'true');
+            }
 
-            // Show selected content
-            activeContent.classList.remove('hidden');
-            console.log('activeTab after:', activeTab.classList.toString());
-            console.log('activeContent after:', activeContent.classList.toString());
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
         }
 
-        usersListTab.addEventListener('click', function() {
+        usersListTab?.addEventListener('click', () => {
             switchTab(usersListTab, usersListContent);
         });
 
-        addRestaurantTab.addEventListener('click', function() {
-            console.log('Add Restaurant tab clicked');
+        addRestaurantTab?.addEventListener('click', () => {
             switchTab(addRestaurantTab, addRestaurantContent);
         });
 
-        addDeliveryTab.addEventListener('click', function() {
+        addDeliveryTab?.addEventListener('click', () => {
             switchTab(addDeliveryTab, addDeliveryContent);
         });
 
-        // Restaurant form functionality
-        const createRestaurantForm = document.getElementById('createRestaurantForm');
-        const createRestaurantBtn = document.getElementById('createRestaurantBtn');
-        const resetRestaurantBtn = document.getElementById('resetRestaurantBtn');
+        if (elements.searchInput) {
+            let searchTimer;
+            elements.searchInput.addEventListener('input', (event) => {
+                const value = event.target.value.trim();
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(() => {
+                    usersState.search = value;
+                    usersState.currentPage = 1;
+                    fetchUsers();
+                }, 300);
+            });
+        }
 
-        resetRestaurantBtn.addEventListener('click', function() {
-            createRestaurantForm.reset();
-        });
+        if (elements.userTypeFilter) {
+            elements.userTypeFilter.addEventListener('change', (event) => {
+                usersState.userType = event.target.value;
+                usersState.currentPage = 1;
+                fetchUsers();
+            });
+        }
 
-        createRestaurantBtn.addEventListener('click', function() {
-            if (createRestaurantForm.checkValidity()) {
-                // Get form data
-                const formData = new FormData(createRestaurantForm);
-                const restaurantData = {
-                    firstName: formData.get('firstName'),
-                    lastName: formData.get('lastName'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    password: formData.get('password'),
-                    status: formData.get('restaurantStatus'),
-                    userType: 'restaurant',
-                    restaurantName: formData.get('restaurantName'),
-                    restaurantAddress: formData.get('restaurantAddress'),
-                    city: formData.get('city'),
-                    state: formData.get('state'),
-                    zipCode: formData.get('zipCode'),
-                    cuisineType: formData.get('cuisineType'),
-                    description: formData.get('description'),
-                    priceRange: formData.get('priceRange'),
-                    deliveryTimeMinutes: formData.get('deliveryTimeMinutes'),
-                    deliveryFee: formData.get('deliveryFee'),
-                    minimumOrder: formData.get('minimumOrder'),
-                    imageUrl: formData.get('imageUrl')
-                };
+        if (elements.userStatusFilter) {
+            elements.userStatusFilter.addEventListener('change', (event) => {
+                usersState.status = event.target.value;
+                usersState.currentPage = 1;
+                fetchUsers();
+            });
+        }
 
-                // Here you would typically send the data to your backend
-                console.log('Creating restaurant account:', restaurantData);
+        elements.createRestaurantForm?.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
 
-                // Show success message
-                alert('Restaurant account created successfully!');
+            const payload = {
+                userType: 'restaurant',
+                firstName: formData.get('firstName')?.trim(),
+                lastName: formData.get('lastName')?.trim(),
+                email: formData.get('email')?.trim(),
+                phone: formData.get('phone')?.trim(),
+                password: formData.get('password'),
+                status: formData.get('restaurantStatus'),
+                restaurantName: formData.get('restaurantName')?.trim(),
+                restaurantAddress: formData.get('restaurantAddress')?.trim(),
+                city: formData.get('city')?.trim(),
+                state: formData.get('state')?.trim(),
+                zipCode: formData.get('zipCode')?.trim(),
+                cuisineType: formData.get('cuisineType')
+            };
 
-                // Reset form
-                createRestaurantForm.reset();
+            const wasSuccessful = await submitUser(
+                '/admin/users/restaurants',
+                payload,
+                elements.createRestaurantBtn,
+                'Restaurant account created successfully.'
+            );
 
-                // Switch back to users list
-                switchTab(usersListTab, usersListContent);
-
-                // Refresh the page to show the new user
-                location.reload();
-            } else {
-                createRestaurantForm.reportValidity();
+            if (wasSuccessful) {
+                event.target.reset();
             }
         });
 
-        // Delivery form functionality
-        const createDeliveryForm = document.getElementById('createDeliveryForm');
-        const createDeliveryBtn = document.getElementById('createDeliveryBtn');
-        const resetDeliveryBtn = document.getElementById('resetDeliveryBtn');
+        elements.createDeliveryForm?.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
 
-        resetDeliveryBtn.addEventListener('click', function() {
-            createDeliveryForm.reset();
-        });
+            const payload = {
+                userType: 'delivery',
+                firstName: formData.get('firstName')?.trim(),
+                lastName: formData.get('lastName')?.trim(),
+                email: formData.get('email')?.trim(),
+                phone: formData.get('phone')?.trim(),
+                password: formData.get('password'),
+                status: formData.get('deliveryStatus'),
+                vehicleType: formData.get('vehicleType'),
+                licenseNumber: formData.get('licenseNumber')?.trim(),
+                licenseExpiry: formData.get('licenseExpiry'),
+                deliveryRadius: formData.get('deliveryRadius') ? Number(formData.get('deliveryRadius')) : undefined
+            };
 
-        createDeliveryBtn.addEventListener('click', function() {
-            if (createDeliveryForm.checkValidity()) {
-                // Get form data
-                const formData = new FormData(createDeliveryForm);
-                const deliveryData = {
-                    firstName: formData.get('firstName'),
-                    lastName: formData.get('lastName'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    password: formData.get('password'),
-                    status: formData.get('deliveryStatus'),
-                    userType: 'delivery',
-                    vehicleType: formData.get('vehicleType'),
-                    licenseNumber: formData.get('licenseNumber'),
-                    licenseExpiry: formData.get('licenseExpiry'),
-                    deliveryRadius: formData.get('deliveryRadius')
-                };
+            const wasSuccessful = await submitUser(
+                '/admin/users/delivery',
+                payload,
+                elements.createDeliveryBtn,
+                'Delivery driver account created successfully.'
+            );
 
-                // Here you would typically send the data to your backend
-                console.log('Creating delivery driver account:', deliveryData);
-
-                // Show success message
-                alert('Delivery driver account created successfully!');
-
-                // Reset form
-                createDeliveryForm.reset();
-
-                // Switch back to users list
-                switchTab(usersListTab, usersListContent);
-
-                // Refresh the page to show the new user
-                location.reload();
-            } else {
-                createDeliveryForm.reportValidity();
+            if (wasSuccessful) {
+                event.target.reset();
             }
         });
+
+        // Set default visible tab and load data
+        switchTab(usersListTab, usersListContent);
+        fetchUsers();
+        fetchUserStats();
     });
 </script>
 <script id="dhws-dataInjector" src="../../public/dhws-data-injector.js"></script>

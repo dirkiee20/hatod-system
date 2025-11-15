@@ -11,7 +11,8 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Run the main schema
-\i schema.sql
+\i database/schema.sql
+
 
 -- Create development admin user
 -- Note: In production, use proper password hashing
